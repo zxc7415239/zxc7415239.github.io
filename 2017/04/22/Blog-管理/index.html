@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Shan's Blog">
 <meta property="og:description" content="這邊是介紹如何管理BLOG，並能在不同電腦上寫 Blog。">
 <meta property="og:image" content="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/%E5%89%B5%E5%BB%BA%E5%88%86%E6%94%AF.png">
-<meta property="og:updated_time" content="2017-04-22T06:56:58.403Z">
+<meta property="og:updated_time" content="2017-04-22T11:48:39.157Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Blog 管理">
 <meta name="twitter:description" content="這邊是介紹如何管理BLOG，並能在不同電腦上寫 Blog。">
@@ -104,12 +104,13 @@
 <li><a href="#維護">Blog 維護</a></li>
 </ul>
 </li>
+<li><a href="#Reference">Reference</a></li>
 </ul>
 <h2 id="新建分支，推送源碼"><a href="#新建分支，推送源碼" class="headerlink" title="新建分支，推送源碼 #"></a>新建分支，推送源碼 <a href="#新建" id="新建">#</a></h2><p>為了便於在不同的電腦上寫 Blog，需要對 Blog 內容進行同步，我們使用 Github 分支(branch)來解決這個問題。<br>首先到 <a href="https://github.com/" target="_blank" rel="external">Github</a> 為倉庫新增分支，分支名稱為 hexo。<br>並到右上方 Settings 中，將 branches 選項中的 default 改成 hexo。</p>
 <p><img src="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/%E5%89%B5%E5%BB%BA%E5%88%86%E6%94%AF.png" alt="創建分支" width="50%" height="50%"><br>並到本地端放置專案的資料夾中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Github                     # 放置專案的資料夾</div><div class="line">├── yourname.github.io     # 之前生成 包含 hexo 套件的倉庫</div><div class="line">└── MarkdownPhotos         # 放置 blog 使用圖片的倉庫</div></pre></td></tr></table></figure></p>
 <p>新增一個資料夾，名稱任意，之後要放 blog 資料夾用的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Github</div><div class="line">├── yourname.github.io</div><div class="line">├── MarkdownPhotos</div><div class="line">└── Blog                   # 新增</div></pre></td></tr></table></figure></p>
 <p>將 Git Bash 中的路徑定位到 <code>GitHub/blog</code> 中。將 Github 上的倉庫拉到本地端。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># git bash 上面的路徑大概長這樣</div><div class="line">You-PC@You  /e/Documents/GitHub/blog</div><div class="line">$ git clone git@github.com:yourname/yourname.github.io.git</div></pre></td></tr></table></figure></p>
-<p>現在 blog 中多一個 yourname.github.io 資料夾。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Github</div><div class="line">├── yourname.github.io</div><div class="line">├── MarkdownPhotos</div><div class="line">└── Blog</div><div class="line">    └── yourname.github.io   #新增</div></pre></td></tr></table></figure></p>
+<p>現在 blog 中多一個 yourname.github.io 資料夾。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Github</div><div class="line">├── yourname.github.io</div><div class="line">├── MarkdownPhotos</div><div class="line">└── Blog</div><div class="line">    └── yourname.github.io   # 新增</div></pre></td></tr></table></figure></p>
 <p>將 Git Bash 中的路徑定位到 <code>Github/Blog/yourname.github.io</code> 中。<br>此時 Git Bash 顯示當前分支為 hexo，即 default 分支。<br>接下來輸入指令清空 hexo 目錄。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># git bash 上面的路徑大概長這樣，後面 branch 變成 hexo。</div><div class="line">You-PC@You  /e/Documents/GitHub/blog/yourname.github.io (hexo)</div><div class="line">$ rm -rf *</div><div class="line">$ git add .</div><div class="line">$ git commit -m &apos;init&apos;</div><div class="line">$ git push origin hexo</div></pre></td></tr></table></figure></p>
 <p>此動作會清空hexo分支下原有透過 <code>hexo d</code> 部署的 html 靜態檔案。<br>然後在手動將 <code>Github/yourname.github.io</code> 的檔案複製到 <code>Github/Blog/yourname.github.io</code> 中。<br>記得不要複製到 .git 資料夾(預設是隱藏狀態)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Github</div><div class="line">├── yourname.github.io</div><div class="line">|   ├── .git                     # .git 不要複製到</div><div class="line">|   └── other files/floders      # 複製這些檔案</div><div class="line">├── MarkdownPhotos</div><div class="line">└── Blog</div><div class="line">    └── yourname.github.io       # 丟到這個只剩下 .git 的資料夾中</div><div class="line">        └── .git</div></pre></td></tr></table></figure></p>
 <p>複製完後 <code>Github/yourname.github.io</code> 這個資料夾就能刪除了。<br>接下來透過指令將本地端的 Blog 源碼推送到 Github 的 hexo 目錄下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">You-PC@You  /e/Documents/GitHub/blog/yourname.github.io (hexo) # 目前路徑</div><div class="line">$ git add .</div><div class="line">$ git commit -m &apos;init&apos;</div><div class="line">$ git push origin hexo</div></pre></td></tr></table></figure></p>
@@ -123,11 +124,12 @@
 <p>編輯完成後，執行命令將修改過的源碼推送至 hexo 分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">You-PC@You  /e/Documents/GitHub/blog/yourname.github.io (hexo) # 當前路徑</div><div class="line">git add .</div><div class="line">git commit -m &apos;XXX&apos;</div><div class="line">git push origin hexo</div></pre></td></tr></table></figure></p>
 <p>然後執行命令產生靜態頁面並部署到 master 分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure></p>
 <p>最後通過 <code>https://yourname.github.io/</code> 查看。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference  #"></a>Reference  <a href="#Reference" id="Reference">#</a></h2><p><a href="http://yurixu.com/categories/Hexo/" target="_blank" rel="external">Hexo搭建个人博客</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zxc7415239.github.io/2017/04/22/Blog-管理/" data-id="cj1s3e5sy0000ssc2lx9ayt6g" class="article-share-link">Share</a>
+      <a data-url="https://zxc7415239.github.io/2017/04/22/Blog-管理/" data-id="cj1t5tgpu0001dkc2rp2huizd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -146,6 +148,11 @@
     </a>
   
   
+    <a href="/2017/04/22/Django-Celery-in-windows/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Django + Celery in windows</div>
+    </a>
+  
 </nav>
 
   
@@ -159,7 +166,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分類</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/Celery/">Celery</a></li></ul></li></ul></li></ul>
     </div>
   </div>
 
@@ -185,6 +192,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/04/22/Django-Celery-in-windows/">Django + Celery in windows</a>
+          </li>
         
           <li>
             <a href="/2017/04/22/Blog-管理/">Blog 管理</a>
