@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Blog 管理 | Shan&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="這邊是介紹如何管理BLOG，並能在不同電腦上寫 Blog。">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Blog 管理">
+<meta property="og:url" content="https://zxc7415239.github.io/2017/04/22/Blog-管理/index.html">
+<meta property="og:site_name" content="Shan's Blog">
+<meta property="og:description" content="這邊是介紹如何管理BLOG，並能在不同電腦上寫 Blog。">
+<meta property="og:image" content="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/%E5%89%B5%E5%BB%BA%E5%88%86%E6%94%AF.png">
+<meta property="og:updated_time" content="2017-04-22T06:56:58.403Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Blog 管理">
+<meta name="twitter:description" content="這邊是介紹如何管理BLOG，並能在不同電腦上寫 Blog。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/%E5%89%B5%E5%BB%BA%E5%88%86%E6%94%AF.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Shan&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Shan&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">這是我的學習筆記</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zxc7415239.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Blog-管理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/22/Blog-管理/" class="article-date">
+  <time datetime="2017-04-21T17:10:48.000Z" itemprop="datePublished">2017-04-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Blog 管理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>這邊是介紹如何管理BLOG，並能在不同電腦上寫 Blog。<br><a id="more"></a></p>
+<ul>
+<li><a href="#新建">新建分支，推送源碼</a></li>
+<li><a href="#管理">日常 Blog 管理</a><ul>
+<li><a href="#發新文章">發新文章</a></li>
+<li><a href="#維護">Blog 維護</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="新建分支，推送源碼"><a href="#新建分支，推送源碼" class="headerlink" title="新建分支，推送源碼 #"></a>新建分支，推送源碼 <a href="#新建" id="新建">#</a></h2><p>為了便於在不同的電腦上寫 Blog，需要對 Blog 內容進行同步，我們使用 Github 分支(branch)來解決這個問題。<br>首先到 <a href="https://github.com/" target="_blank" rel="external">Github</a> 為倉庫新增分支，分支名稱為 hexo。<br>並到右上方 Settings 中，將 branches 選項中的 default 改成 hexo。</p>
+<p><img src="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/%E5%89%B5%E5%BB%BA%E5%88%86%E6%94%AF.png" alt="創建分支" width="50%" height="50%"><br>並到本地端放置專案的資料夾中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Github                     # 放置專案的資料夾</div><div class="line">├── yourname.github.io     # 之前生成 包含 hexo 套件的倉庫</div><div class="line">└── MarkdownPhotos         # 放置 blog 使用圖片的倉庫</div></pre></td></tr></table></figure></p>
+<p>新增一個資料夾，名稱任意，之後要放 blog 資料夾用的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Github</div><div class="line">├── yourname.github.io</div><div class="line">├── MarkdownPhotos</div><div class="line">└── Blog                   # 新增</div></pre></td></tr></table></figure></p>
+<p>將 Git Bash 中的路徑定位到 <code>GitHub/blog</code> 中。將 Github 上的倉庫拉到本地端。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># git bash 上面的路徑大概長這樣</div><div class="line">You-PC@You  /e/Documents/GitHub/blog</div><div class="line">$ git clone git@github.com:yourname/yourname.github.io.git</div></pre></td></tr></table></figure></p>
+<p>現在 blog 中多一個 yourname.github.io 資料夾。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Github</div><div class="line">├── yourname.github.io</div><div class="line">├── MarkdownPhotos</div><div class="line">└── Blog</div><div class="line">    └── yourname.github.io   #新增</div></pre></td></tr></table></figure></p>
+<p>將 Git Bash 中的路徑定位到 <code>Github/Blog/yourname.github.io</code> 中。<br>此時 Git Bash 顯示當前分支為 hexo，即 default 分支。<br>接下來輸入指令清空 hexo 目錄。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># git bash 上面的路徑大概長這樣，後面 branch 變成 hexo。</div><div class="line">You-PC@You  /e/Documents/GitHub/blog/yourname.github.io (hexo)</div><div class="line">$ rm -rf *</div><div class="line">$ git add .</div><div class="line">$ git commit -m &apos;init&apos;</div><div class="line">$ git push origin hexo</div></pre></td></tr></table></figure></p>
+<p>此動作會清空hexo分支下原有透過 <code>hexo d</code> 部署的 html 靜態檔案。<br>然後在手動將 <code>Github/yourname.github.io</code> 的檔案複製到 <code>Github/Blog/yourname.github.io</code> 中。<br>記得不要複製到 .git 資料夾(預設是隱藏狀態)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Github</div><div class="line">├── yourname.github.io</div><div class="line">|   ├── .git                     # .git 不要複製到</div><div class="line">|   └── other files/floders      # 複製這些檔案</div><div class="line">├── MarkdownPhotos</div><div class="line">└── Blog</div><div class="line">    └── yourname.github.io       # 丟到這個只剩下 .git 的資料夾中</div><div class="line">        └── .git</div></pre></td></tr></table></figure></p>
+<p>複製完後 <code>Github/yourname.github.io</code> 這個資料夾就能刪除了。<br>接下來透過指令將本地端的 Blog 源碼推送到 Github 的 hexo 目錄下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">You-PC@You  /e/Documents/GitHub/blog/yourname.github.io (hexo) # 目前路徑</div><div class="line">$ git add .</div><div class="line">$ git commit -m &apos;init&apos;</div><div class="line">$ git push origin hexo</div></pre></td></tr></table></figure></p>
+<p>注意：Blog 主配置文件 _config.yml 中的 deploy 參數，部署的分支應為 master。<br>以後在 hexo 分支下寫 Blog，然後 <code>hexo d</code> 部署到 master 分支下。</p>
+<h2 id="日常-Blog-管理"><a href="#日常-Blog-管理" class="headerlink" title="日常 Blog 管理 #"></a>日常 Blog 管理 <a href="#管理" id="管理">#</a></h2><h4 id="發新文章"><a href="#發新文章" class="headerlink" title="發新文章  #"></a>發新文章  <a href="#發新文章" id="發新文章">#</a></h4><p>執行 <code>hexo new</code> 命令會在 <code>/source/_posts</code> 下生成 post_name.md。<br>編輯語法為 <a href="http://markdown.tw/" target="_blank" rel="external">Markdown</a>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo new [layout] &apos;post_name&apos;   # 發表文章</div><div class="line">hexo new &apos;post_name&apos;            # 不選layout時，預設是 post</div><div class="line">hexo n &apos;post_name&apos;              # 簡寫</div></pre></td></tr></table></figure></p>
+<p>layout 模板文件在目錄scaffolds下。<br>post.md 預設內容如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: &#123;&#123; title &#125;&#125;</div><div class="line">date: &#123;&#123; date &#125;&#125;</div><div class="line">tags:</div><div class="line">---</div></pre></td></tr></table></figure></p>
+<p>如果想在每篇文章中添加 categories 分類信息，只需要修改 post.md 文件即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: &#123;&#123; title &#125;&#125;  #文章名稱</div><div class="line">date: &#123;&#123; date &#125;&#125;    #文章發布日期</div><div class="line">categories:         #文章分類（可以為空）</div><div class="line">tags:               #文章標籤（可以為空），多標籤格式[tag1,tag2,tag3]</div><div class="line">---</div></pre></td></tr></table></figure></p>
+<p>不想在首頁顯示全文可使用摘要，在 post_name.md 中使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">以上是摘要</div><div class="line">&lt;!--more--&gt;</div><div class="line">以下是剩下文章</div></pre></td></tr></table></figure></p>
+<p>more 以上內容即是摘要信息，顯示在首頁中，點擊 Read More 按鈕打開全文。</p>
+<h4 id="Blog-維護"><a href="#Blog-維護" class="headerlink" title="Blog 維護 #"></a>Blog 維護 <a href="#維護" id="維護">#</a></h4><p>日常發文，修改文章都在 hexo 分支下進行，平時先透過本地伺服器編輯和觀看內容。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure></p>
+<p>編輯完成後，執行命令將修改過的源碼推送至 hexo 分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">You-PC@You  /e/Documents/GitHub/blog/yourname.github.io (hexo) # 當前路徑</div><div class="line">git add .</div><div class="line">git commit -m &apos;XXX&apos;</div><div class="line">git push origin hexo</div></pre></td></tr></table></figure></p>
+<p>然後執行命令產生靜態頁面並部署到 master 分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure></p>
+<p>最後通過 <code>https://yourname.github.io/</code> 查看。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zxc7415239.github.io/2017/04/22/Blog-管理/" data-id="cj1s3e5sy0000ssc2lx9ayt6g" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/21/Hexo-Github-簡單使用教學/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hexo + Github 簡單使用教學
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">彙整</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/04/22/Blog-管理/">Blog 管理</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/21/Hexo-Github-簡單使用教學/">Hexo + Github 簡單使用教學</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/21/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Shan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

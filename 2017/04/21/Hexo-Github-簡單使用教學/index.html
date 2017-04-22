@@ -5,20 +5,20 @@
   
   <title>Hexo + Github 簡單使用教學 | Shan&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="這邊主要就紀錄我使用 Hexo 佈署到 Github 上的流程。因為第一次使用 Github，Node.js 和 Hexo，所以只有會一點基礎東西。 目錄  # 建置環境 建立流程 安裝 Node.js 安裝 Github Desktop Github Desktop 使用 安裝 Hexo 佈署 Hexo 到 Github   自訂義部分 程式碼區塊 字體   常用 Hexo 指令  建置環境 #">
+  <meta name="description" content="這邊主要就紀錄我使用 Hexo 部署到 Github 上的流程。">
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo + Github 簡單使用教學">
 <meta property="og:url" content="https://zxc7415239.github.io/2017/04/21/Hexo-Github-簡單使用教學/index.html">
 <meta property="og:site_name" content="Shan's Blog">
-<meta property="og:description" content="這邊主要就紀錄我使用 Hexo 佈署到 Github 上的流程。因為第一次使用 Github，Node.js 和 Hexo，所以只有會一點基礎東西。 目錄  # 建置環境 建立流程 安裝 Node.js 安裝 Github Desktop Github Desktop 使用 安裝 Hexo 佈署 Hexo 到 Github   自訂義部分 程式碼區塊 字體   常用 Hexo 指令  建置環境 #">
+<meta property="og:description" content="這邊主要就紀錄我使用 Hexo 部署到 Github 上的流程。">
 <meta property="og:image" content="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/%E6%96%B0%E5%A2%9E%E5%80%89%E5%BA%AB.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/%E9%96%8B%E5%95%9Fgui.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/SSH.png">
-<meta property="og:updated_time" content="2017-04-21T16:38:36.971Z">
+<meta property="og:updated_time" content="2017-04-22T06:56:57.019Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + Github 簡單使用教學">
-<meta name="twitter:description" content="這邊主要就紀錄我使用 Hexo 佈署到 Github 上的流程。因為第一次使用 Github，Node.js 和 Hexo，所以只有會一點基礎東西。 目錄  # 建置環境 建立流程 安裝 Node.js 安裝 Github Desktop Github Desktop 使用 安裝 Hexo 佈署 Hexo 到 Github   自訂義部分 程式碼區塊 字體   常用 Hexo 指令  建置環境 #">
+<meta name="twitter:description" content="這邊主要就紀錄我使用 Hexo 部署到 Github 上的流程。">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/%E6%96%B0%E5%A2%9E%E5%80%89%E5%BA%AB.png">
   
     <link rel="alternate" href="/atom.xml" title="Shan&#39;s Blog" type="application/atom+xml">
@@ -98,15 +98,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>這邊主要就紀錄我使用 Hexo 佈署到 Github 上的流程。<br>因為第一次使用 Github，Node.js 和 Hexo，所以只有會一點基礎東西。</p>
-<h2 id="目錄"><a href="#目錄" class="headerlink" title="目錄  #"></a>目錄  <a href="#目錄" id="目錄">#</a></h2><ul>
+        <p>這邊主要就紀錄我使用 Hexo 部署到 Github 上的流程。<br><a id="more"></a></p>
+<ul>
+<li><a href="#前言">前言</a></li>
 <li><a href="#建置環境">建置環境</a></li>
 <li><a href="#建立流程">建立流程</a><ul>
 <li><a href="#安裝Node">安裝 Node.js</a></li>
 <li><a href="#安裝Github">安裝 Github Desktop</a></li>
 <li><a href="#Github使用">Github Desktop 使用</a></li>
 <li><a href="#安裝Hexo">安裝 Hexo</a></li>
-<li><a href="#佈署Hexo">佈署 Hexo 到 Github</a></li>
+<li><a href="#部署Hexo">部署 Hexo 到 Github</a></li>
 </ul>
 </li>
 <li><a href="#自訂義部分">自訂義部分</a><ul>
@@ -115,37 +116,41 @@
 </ul>
 </li>
 <li><a href="#常用指令">常用 Hexo 指令</a></li>
+<li><a href="#Reference">Reference</a></li>
 </ul>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言 #"></a>前言 <a href="#前言" id="前言">#</a></h2><p>因為第一次使用 Github，Node.js 和 Hexo，所以只有會一點基礎東西。<br>主要是幫助從沒接觸過的人能快速上手。</p>
 <h2 id="建置環境"><a href="#建置環境" class="headerlink" title="建置環境 #"></a>建置環境 <a href="#建置環境" id="建置環境">#</a></h2><p>OS: Windows 8.1<br><a href="https://hexo.io/zh-tw/" target="_blank" rel="external">Hexo</a>: 3.3.1<br><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>: 6.10.2 LTS<br><a href="https://desktop.github.com/" target="_blank" rel="external">Github Desktop</a></p>
 <h2 id="建立流程"><a href="#建立流程" class="headerlink" title="建立流程 #"></a>建立流程 <a href="#建立流程" id="建立流程">#</a></h2><h4 id="安裝-Node-js"><a href="#安裝-Node-js" class="headerlink" title="安裝 Node.js #"></a>安裝 Node.js <a href="#安裝Node" id="安裝Node">#</a></h4><p>去 <a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a> 官網下載 windows x64 版本直接安裝即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ node -v   # 可測試是否安裝成功</div><div class="line">&gt;&gt; v6.10.2</div></pre></td></tr></table></figure></p>
 <h4 id="安裝-Github-Desktop"><a href="#安裝-Github-Desktop" class="headerlink" title="安裝 Github Desktop #"></a>安裝 Github Desktop <a href="#安裝Github" id="安裝Github">#</a></h4><p>去 <a href="https://desktop.github.com/" target="_blank" rel="external">Github Desktop</a> 官網下載直接安裝即可。</p>
-<h4 id="Github-Desktop-使用"><a href="#Github-Desktop-使用" class="headerlink" title="Github Desktop 使用 #"></a>Github Desktop 使用 <a href="#Github使用" id="Github使用">#</a></h4><p>去 <a href="https://github.com/" target="_blank" rel="external">Github</a> 官網登入<br>新增一個倉庫(Repositories)，倉庫名稱為 yourname.github.io [yourname是你的帳號]。</p>
+<h4 id="Github-Desktop-使用"><a href="#Github-Desktop-使用" class="headerlink" title="Github Desktop 使用 #"></a>Github Desktop 使用 <a href="#Github使用" id="Github使用">#</a></h4><p>去 <a href="https://github.com/" target="_blank" rel="external">Github</a> 官網登入<br>新增一個倉庫(Repositories)，倉庫名稱為 <code>yourname.github.io</code> [yourname是你的帳號]。</p>
 <p><img src="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/%E6%96%B0%E5%A2%9E%E5%80%89%E5%BA%AB.png" alt="創建倉庫" width="50%" height="50%"><br>開啟剛安裝好的 Github Desktop ，並將剛創好的倉庫存到本地端。</p>
 <p><img src="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/%E9%96%8B%E5%95%9Fgui.png" alt="存下倉庫" width="50%" height="50%"><br>然後右鍵剛拉下來的倉庫，選取 Open in Git Shell 打開 Git bash(option可選)，執行指令將 Github 上的倉庫拉到本地端。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git pull origin master</div></pre></td></tr></table></figure></p>
 <p>Github Desktop 右上的 Sync 按鈕具有 pull/push 功能，不想打指令可以多嘗試。<br>使用 Github Desktop 的好處是不必像其他教學一樣，不需要配置 SSH Key 和 設定 origin 位置路徑，省了兩個步驟。</p>
 <h4 id="安裝-Hexo"><a href="#安裝-Hexo" class="headerlink" title="安裝 Hexo  #"></a>安裝 Hexo  <a href="#安裝Hexo" id="安裝Hexo">#</a></h4><p>安裝好 Node.js 後，就能使用 npm 安裝 hexo。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo-cli</div></pre></td></tr></table></figure></p>
 <p>輸入以下指令可查看版本。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo version</div></pre></td></tr></table></figure></p>
-<p>接下來，依序輸入以下指令，初始化我們的 Blog。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># git bash 上面的路徑大概長這樣</div><div class="line">Shan-PC@Shan  /e/Documents/GitHub/zxc7415239.github.io (master)</div><div class="line">$ hexo init		# 初始化 blog</div><div class="line"># 輸入上面那個指令後 hexo 會產生新的 .git蓋掉舊的 .git</div><div class="line">$ git init              # 所以就重新產生一個 .git</div><div class="line">$ npm install		# 安裝相關套件</div><div class="line">$ hexo g		# 產生靜態頁面</div><div class="line">$ hexo s		# 啟動本地伺服器</div></pre></td></tr></table></figure></p>
+<p>接下來，依序輸入以下指令，初始化我們的 Blog。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># git bash 上面的路徑大概長這樣</div><div class="line">You-PC@You  /e/Documents/GitHub/zxc7415239.github.io (master)</div><div class="line">$ hexo init		# 初始化 blog</div><div class="line"># 輸入上面那個指令後 hexo 會產生新的 .git蓋掉舊的 .git</div><div class="line">$ git init              # 所以就重新產生一個 .git</div><div class="line">$ npm install		# 安裝相關套件</div><div class="line">$ hexo g		# 產生靜態頁面</div><div class="line">$ hexo s		# 啟動本地伺服器</div></pre></td></tr></table></figure></p>
 <p>網址列輸入 <code>http://localhost:4000</code> ，就能觀看 Blog 了。<br>預設會有一個 Hello World 貼文。</p>
-<h4 id="佈署-Hexo-到-Github"><a href="#佈署-Hexo-到-Github" class="headerlink" title="佈署 Hexo 到 Github  #"></a>佈署 Hexo 到 Github  <a href="#佈署Hexo" id="佈署Hexo">#</a></h4><p>到我們本地 yourname.github.io 的資料夾中能找到 _config.yml 文件。<br>這是 Hexo 的全域配置文件。詳細參數設定可到 <a href="http://yurixu.com/blog/2016/01/04/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/" target="_blank" rel="external">Hexo搭建个人博客（二）</a> 查看<br>這邊拉到最底部修改一下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># Deployment</div><div class="line">## Docs: https://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repository: git@github.com:yourname/yourname.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
+<h4 id="部署-Hexo-到-Github"><a href="#部署-Hexo-到-Github" class="headerlink" title="部署 Hexo 到 Github  #"></a>部署 Hexo 到 Github  <a href="#部署Hexo" id="部署Hexo">#</a></h4><p>到我們本地 yourname.github.io 的資料夾中能找到 _config.yml 文件。<br>這是 Hexo 的全域配置文件。詳細參數設定可到 <a href="http://yurixu.com/blog/2016/01/04/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/" target="_blank" rel="external">Hexo搭建个人博客（二）</a> 查看<br>這邊拉到最底部修改一下 deploy 參數。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># Deployment</div><div class="line">## Docs: https://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repository: git@github.com:yourname/yourname.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
 <p>這邊是 YAML 語法，冒號後面記得空一格，照上面的設定輸入，倉庫的 SSH 地址如下圖可獲得。</p>
 <p><img src="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/SSH.png" alt="SSH地址鏈接" width="50%" height="50%"><br>執行以下命令安裝 hexo-deployer-git，沒安裝套件前輸入 hexo d 會出現 Error。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
 <p>產生靜態頁面後，部署到 Github。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo d -g     # 等同輸入 hexo g 和 hexo d 指令</div></pre></td></tr></table></figure></p>
 <p>再來就可以上 <code>https://yourname.github.io/</code> 查看 Blog 了。</p>
-<h2 id="自訂義部分"><a href="#自訂義部分" class="headerlink" title="自訂義部分 #"></a>自訂義部分 <a href="#自訂義部分" id="自訂義部分">#</a></h2><p>這邊是我有用到客製化的一些紀錄</p>
-<h4 id="程式碼區塊"><a href="#程式碼區塊" class="headerlink" title="程式碼區塊 #"></a>程式碼區塊 <a href="#程式碼區塊" id="程式碼區塊">#</a></h4><p>找到文件 \themes\landscape\source\css\_partial\highlight.styl 中17行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">margin: 0 article-padding * -1</div></pre></td></tr></table></figure></p>
+<h2 id="自訂義部分"><a href="#自訂義部分" class="headerlink" title="自訂義部分 #"></a>自訂義部分 <a href="#自訂義部分" id="自訂義部分">#</a></h2><p>這邊是我有用到客製化的一些紀錄<br>如果動過這區的東西，要砍掉舊的靜態檔案，才會換成修改過的靜態檔案。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div></pre></td></tr></table></figure></p>
+<p>清除快取檔案 <code>(db.json)</code> 和已產生的靜態檔案 <code>(public)</code>。</p>
+<h4 id="程式碼區塊"><a href="#程式碼區塊" class="headerlink" title="程式碼區塊 #"></a>程式碼區塊 <a href="#程式碼區塊" id="程式碼區塊">#</a></h4><p>找到文件 <code>/themes/landscape/source/css/_partial/highlight.styl</code> 中17行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">margin: 0 article-padding * -1</div></pre></td></tr></table></figure></p>
 <p>換成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">margin: auto</div></pre></td></tr></table></figure></p>
 <p>這樣程式碼區塊就會與兩側保持一定間距。<br>在第22行添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">border-radius：8px</div></pre></td></tr></table></figure></p>
 <p>使程式碼區塊呈現圓角效果。</p>
-<h4 id="字體"><a href="#字體" class="headerlink" title="字體 #"></a>字體 <a href="#字體" id="字體">#</a></h4><p>找到文件 \themes\landscape\source\css\_variables.styl 修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">font-sans = Microsoft JhengHei, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif</div><div class="line">font-size = 16px</div></pre></td></tr></table></figure></p>
+<h4 id="字體"><a href="#字體" class="headerlink" title="字體 #"></a>字體 <a href="#字體" id="字體">#</a></h4><p>找到文件 <code>/themes/landscape/source/css/_variables.styl</code> 修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">font-sans = Microsoft JhengHei, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif</div><div class="line">font-size = 16px</div></pre></td></tr></table></figure></p>
 <h2 id="常用-Hexo-指令"><a href="#常用-Hexo-指令" class="headerlink" title="常用 Hexo 指令 #"></a>常用 Hexo 指令 <a href="#常用指令" id="常用指令">#</a></h2><p>發文<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo new &quot;postName&quot; 		# 產生新的文章</div><div class="line">$ hexo new page &quot;pageName&quot;	# 產生新的頁面</div></pre></td></tr></table></figure></p>
 <p>Hexo提供了常用命令的簡寫<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo n == hexo new   		# 產生新的 post/page/draft</div><div class="line">$ hexo g == hexo generate  	# 產生靜態頁面</div><div class="line">$ hexo s == hexo server		# 啟動本地瀏覽</div><div class="line">$ hexo d == hexo deploy		# 部署文件至 Github 上</div></pre></td></tr></table></figure></p>
 <p>指令組合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo d -g	# 產生靜態文件後，部署 blog</div><div class="line">$ hexo s -g	# 產生靜態文件後，預覽 blog</div></pre></td></tr></table></figure></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference  #"></a>Reference  <a href="#Reference" id="Reference">#</a></h2><p><a href="https://mousyball.github.io/2017/01/01/Hexo-Github-Build/#an-zhuang-github-desktop" target="_blank" rel="external">Hexo + Github 零基礎建立過程</a><br><a href="http://yurixu.com/categories/Hexo/" target="_blank" rel="external">Hexo搭建个人博客</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zxc7415239.github.io/2017/04/21/Hexo-Github-簡單使用教學/" data-id="cj1s2q8ov00015oc2yhc1jw32" class="article-share-link">Share</a>
+      <a data-url="https://zxc7415239.github.io/2017/04/21/Hexo-Github-簡單使用教學/" data-id="cj1s3e5t30001ssc21ml46k8q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -163,6 +168,11 @@
       </div>
     </a>
   
+  
+    <a href="/2017/04/22/Blog-管理/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Blog 管理</div>
+    </a>
   
 </nav>
 
@@ -203,6 +213,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/04/22/Blog-管理/">Blog 管理</a>
+          </li>
         
           <li>
             <a href="/2017/04/21/Hexo-Github-簡單使用教學/">Hexo + Github 簡單使用教學</a>
