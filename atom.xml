@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxc7415239.github.io/"/>
-  <updated>2017-04-23T12:04:10.010Z</updated>
+  <updated>2017-04-23T16:56:12.965Z</updated>
   <id>https://zxc7415239.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://zxc7415239.github.io/2017/04/23/Flush-output-of-Python-print/"/>
     <id>https://zxc7415239.github.io/2017/04/23/Flush-output-of-Python-print/</id>
     <published>2017-04-23T11:10:40.000Z</published>
-    <updated>2017-04-23T12:04:10.010Z</updated>
+    <updated>2017-04-23T16:56:12.965Z</updated>
     
     <content type="html"><![CDATA[<p>這邊紀錄如何將 print 的值 flush 到 output file 中。<br><a id="more"></a></p>
 <ul>
@@ -47,6 +47,8 @@
       <category term="Python" scheme="https://zxc7415239.github.io/categories/Python/"/>
     
     
+      <category term="Python" scheme="https://zxc7415239.github.io/tags/Python/"/>
+    
   </entry>
   
   <entry>
@@ -54,7 +56,7 @@
     <link href="https://zxc7415239.github.io/2017/04/22/Django-Celery-in-windows/"/>
     <id>https://zxc7415239.github.io/2017/04/22/Django-Celery-in-windows/</id>
     <published>2017-04-22T11:05:26.000Z</published>
-    <updated>2017-04-22T12:18:46.231Z</updated>
+    <updated>2017-04-23T16:56:45.965Z</updated>
     
     <content type="html"><![CDATA[<p>最新版的 Celery 不支援 Windows，網路上教學大部分都是Linux系統，想讓它動起來花了點心力，這邊紀錄一下過程。<br><a id="more"></a></p>
 <ul>
@@ -111,8 +113,12 @@
     
       <category term="Django" scheme="https://zxc7415239.github.io/categories/Python/Django/"/>
     
-      <category term="Celery" scheme="https://zxc7415239.github.io/categories/Python/Django/Celery/"/>
     
+      <category term="Python" scheme="https://zxc7415239.github.io/tags/Python/"/>
+    
+      <category term="Django" scheme="https://zxc7415239.github.io/tags/Django/"/>
+    
+      <category term="Celery" scheme="https://zxc7415239.github.io/tags/Celery/"/>
     
   </entry>
   
@@ -121,7 +127,7 @@
     <link href="https://zxc7415239.github.io/2017/04/22/Blog-%E7%AE%A1%E7%90%86/"/>
     <id>https://zxc7415239.github.io/2017/04/22/Blog-管理/</id>
     <published>2017-04-21T17:10:48.000Z</published>
-    <updated>2017-04-22T11:48:39.157Z</updated>
+    <updated>2017-04-23T16:56:55.245Z</updated>
     
     <content type="html"><![CDATA[<p>這邊是介紹如何管理BLOG，並能在不同電腦上寫 Blog。<br><a id="more"></a></p>
 <ul>
@@ -163,6 +169,8 @@
       <category term="Hexo" scheme="https://zxc7415239.github.io/categories/Hexo/"/>
     
     
+      <category term="Hexo" scheme="https://zxc7415239.github.io/tags/Hexo/"/>
+    
   </entry>
   
   <entry>
@@ -170,7 +178,7 @@
     <link href="https://zxc7415239.github.io/2017/04/21/Hexo-Github-%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8/"/>
     <id>https://zxc7415239.github.io/2017/04/21/Hexo-Github-簡單使用教學/</id>
     <published>2017-04-21T13:03:41.000Z</published>
-    <updated>2017-04-23T14:58:37.926Z</updated>
+    <updated>2017-04-23T17:48:21.177Z</updated>
     
     <content type="html"><![CDATA[<p>這邊主要就紀錄我使用 Hexo 部署到 Github 上的流程。<br><a id="more"></a></p>
 <ul>
@@ -221,7 +229,7 @@
 <h2 id="常用-Hexo-指令"><a href="#常用-Hexo-指令" class="headerlink" title="常用 Hexo 指令 #"></a>常用 Hexo 指令 <a href="#常用指令" id="常用指令">#</a></h2><p>發文<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo new &quot;postName&quot; 		# 產生新的文章</div><div class="line">$ hexo new page &quot;pageName&quot;	# 產生新的頁面</div></pre></td></tr></table></figure></p>
 <p>Hexo提供了常用命令的簡寫<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo n == hexo new   		# 產生新的 post/page/draft</div><div class="line">$ hexo g == hexo generate  	# 產生靜態頁面</div><div class="line">$ hexo s == hexo server		# 啟動本地瀏覽</div><div class="line">$ hexo d == hexo deploy		# 部署文件至 Github 上</div></pre></td></tr></table></figure></p>
 <p>指令組合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo d -g	# 產生靜態文件後，部署 blog</div><div class="line">$ hexo s -g	# 產生靜態文件後，預覽 blog</div></pre></td></tr></table></figure></p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference  #"></a>Reference  <a href="#Reference" id="Reference">#</a></h2><p><a href="https://mousyball.github.io/2017/01/01/Hexo-Github-Build/#an-zhuang-github-desktop" target="_blank" rel="external">Hexo + Github 零基礎建立過程</a><br><a href="http://yurixu.com/categories/Hexo/" target="_blank" rel="external">Hexo搭建个人博客</a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference  #"></a>Reference  <a href="#Reference" id="Reference">#</a></h2><p><a href="https://mousyball.github.io/2017/01/01/Hexo-Github-Build/#an-zhuang-github-desktop" target="_blank" rel="external">Hexo + Github 零基礎建立過程</a><br><a href="http://yurixu.com/categories/Hexo/" target="_blank" rel="external">Hexo搭建个人博客</a><br><a href="http://charsdavy.github.io/2016/06/24/hexo-extern-scroll-top/" target="_blank" rel="external">添加回滚到顶部按钮</a></p>
 ]]></content>
     
     <summary type="html">
@@ -232,6 +240,8 @@
     
       <category term="Hexo" scheme="https://zxc7415239.github.io/categories/Hexo/"/>
     
+    
+      <category term="Hexo" scheme="https://zxc7415239.github.io/tags/Hexo/"/>
     
   </entry>
   
