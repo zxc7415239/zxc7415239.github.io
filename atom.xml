@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Shan&#39;s Blog</title>
+  <subtitle>這是我的學習筆記</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://zxc7415239.github.io/"/>
+  <updated>2017-04-23T12:04:10.010Z</updated>
+  <id>https://zxc7415239.github.io/</id>
+  
+  <author>
+    <name>Shan</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Flush output of Python print</title>
+    <link href="https://zxc7415239.github.io/2017/04/23/Flush-output-of-Python-print/"/>
+    <id>https://zxc7415239.github.io/2017/04/23/Flush-output-of-Python-print/</id>
+    <published>2017-04-23T11:10:40.000Z</published>
+    <updated>2017-04-23T12:04:10.010Z</updated>
+    
+    <content type="html"><![CDATA[<p>這邊紀錄如何將 print 的值 flush 到 output file 中。<br><a id="more"></a></p>
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#建置環境">建置環境</a></li>
+<li><a href="#程式碼">程式碼</a></li>
+<li><a href="#Reference">Reference</a></li>
+</ul>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言 #"></a>前言 <a href="#前言" id="前言">#</a></h2><p>這邊主要是提供一個將 print 值 flush 到一個檔案中的方法。</p>
+<h2 id="建置環境"><a href="#建置環境" class="headerlink" title="建置環境 #"></a>建置環境 <a href="#建置環境" id="建置環境">#</a></h2><p>OS: Windows 8.1<br>Python 2.7</p>
+<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼 #"></a>程式碼 <a href="#程式碼" id="程式碼">#</a></h2><p>現在的結構如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dir</div><div class="line">├── func.py     # function</div><div class="line">├── main.py     # 主程式</div><div class="line">└── output.txt  # 將執行結果輸出到這裡</div></pre></td></tr></table></figure></p>
+<h4 id="func-py"><a href="#func-py" class="headerlink" title="func.py"></a>func.py</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">import sys</div><div class="line">class flushfile(object):</div><div class="line">    def __init__(self, f):</div><div class="line">        self.f = f</div><div class="line">    def __getattr__(self,name):</div><div class="line">        return object.__getattribute__(self.f, name)</div><div class="line">    def write(self, x):</div><div class="line">        self.f.write(x)</div><div class="line">        self.f.flush()</div><div class="line">    def close(self):</div><div class="line">        self.f.close()</div><div class="line">import time</div><div class="line">def sleep():</div><div class="line">    for i in xrange(10):</div><div class="line">        time.sleep(0.5)</div><div class="line">        print &apos;test&apos;,i+1</div></pre></td></tr></table></figure>
+<h4 id="main-py"><a href="#main-py" class="headerlink" title="main.py"></a>main.py</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">import sys</div><div class="line">from func import flushfile, sleep</div><div class="line">#----------------------------#</div><div class="line">orig_stdout = sys.stdout # open</div><div class="line">sys.stdout = open(dir_path + &quot;output.txt&quot;,&quot;w&quot;)</div><div class="line">#----------------------------#</div><div class="line">sys.stdout = flushfile(sys.stdout)</div><div class="line">r = sleep()</div><div class="line">#----------------------------#</div><div class="line">sys.stdout.close() # close</div><div class="line">sys.stdout = orig_stdout</div><div class="line">#----------------------------#</div></pre></td></tr></table></figure>
+<h4 id="output-txt"><a href="#output-txt" class="headerlink" title="output.txt"></a>output.txt</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">test 1</div><div class="line">test 2</div><div class="line">test 3</div><div class="line">test 4</div><div class="line">test 5</div><div class="line">test 6</div><div class="line">test 7</div><div class="line">test 8</div><div class="line">test 9</div><div class="line">test 10</div></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference  #"></a>Reference  <a href="#Reference" id="Reference">#</a></h2><p><a href="http://stackoverflow.com/questions/230751/how-to-flush-output-of-python-print/231216#231216" target="_blank" rel="external">How to flush output of Python print?</a><br><a href="http://ephrain.pixnet.net/blog/post/60371176-%5Bpython%5D-__getattr__%28%29-%E8%88%87-__getattribute__%28%29-%E7%9A%84%E5%B7%AE%E5%88%A5" target="_blank" rel="external">[Python] __getattr__() 與 __getattribute__() 的差別</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;這邊紀錄如何將 print 的值 flush 到 output file 中。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="https://zxc7415239.github.io/categories/Python/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Django + Celery in windows</title>
+    <link href="https://zxc7415239.github.io/2017/04/22/Django-Celery-in-windows/"/>
+    <id>https://zxc7415239.github.io/2017/04/22/Django-Celery-in-windows/</id>
+    <published>2017-04-22T11:05:26.000Z</published>
+    <updated>2017-04-22T12:18:46.231Z</updated>
+    
+    <content type="html"><![CDATA[<p>最新版的 Celery 不支援 Windows，網路上教學大部分都是Linux系統，想讓它動起來花了點心力，這邊紀錄一下過程。<br><a id="more"></a></p>
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#建置環境">建置環境</a></li>
+<li><a href="#建立流程">建立流程</a><ul>
+<li><a href="#安裝Celery">安裝 Celery</a></li>
+<li><a href="#安裝ERLANG">安裝 ERLANG/OTP</a></li>
+<li><a href="#安裝RabbitMQ">安裝 RabbitMQ</a></li>
+<li><a href="#Django">Django project 文件設定</a></li>
+<li><a href="#啟動">啟動 worker</a></li>
+<li><a href="#測試">測試</a></li>
+</ul>
+</li>
+<li><a href="#Reference">Reference</a></li>
+</ul>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言 #"></a>前言 <a href="#前言" id="前言">#</a></h2><p>下方內容如果有英文內容，那是從官方文件轉貼來，用來說明程式碼的。</p>
+<h2 id="建置環境"><a href="#建置環境" class="headerlink" title="建置環境 #"></a>建置環境 <a href="#建置環境" id="建置環境">#</a></h2><p>OS: Windows 8.1<br><a href="https://www.djangoproject.com/" target="_blank" rel="external">Django</a>: 1.8.17<br><a href="http://docs.celeryproject.org/en/3.1/" target="_blank" rel="external">Celery</a>: 3.1.25 (最後支援 windows 的版本)<br><a href="http://www.erlang.org/downloads" target="_blank" rel="external">ERLANG/OTP</a>: 19.3<br><a href="https://www.rabbitmq.com/" target="_blank" rel="external">RabbitMQ</a>: 3.6.9</p>
+<h2 id="建立流程"><a href="#建立流程" class="headerlink" title="建立流程 #"></a>建立流程 <a href="#建立流程" id="建立流程">#</a></h2><h4 id="安裝-Celery"><a href="#安裝-Celery" class="headerlink" title="安裝 Celery #"></a>安裝 Celery <a href="#安裝Celery" id="安裝Celery">#</a></h4><p>先安裝 Celery 3.1.25<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install celery==3.1.25</div></pre></td></tr></table></figure></p>
+<h4 id="安裝-ERLANG-OTP"><a href="#安裝-ERLANG-OTP" class="headerlink" title="安裝 ERLANG/OTP #"></a>安裝 ERLANG/OTP <a href="#安裝ERLANG" id="安裝ERLANG">#</a></h4><p>在安裝 RabbitMQ 前要先去 <a href="http://www.erlang.org/downloads" target="_blank" rel="external">ERLANG/OTP</a> 官網下載來安裝。<br>我是下載 <code>OTP 19.3 Windows 64-bit Binary File (103012097)</code></p>
+<h4 id="安裝-RabbitMQ"><a href="#安裝-RabbitMQ" class="headerlink" title="安裝 RabbitMQ #"></a>安裝 RabbitMQ <a href="#安裝RabbitMQ" id="安裝RabbitMQ">#</a></h4><p>到 <a href="https://www.rabbitmq.com/" target="_blank" rel="external">RabbitMQ</a> 官網下載來安裝即可。</p>
+<h4 id="Django-project-文件設定"><a href="#Django-project-文件設定" class="headerlink" title="Django project 文件設定 #"></a>Django project 文件設定 <a href="#Django" id="Django">#</a></h4><p>我們現在的 Django project 結構如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proj               # Django project</div><div class="line">├── manage.py</div><div class="line">├── myapp          # demo app</div><div class="line">└── proj</div></pre></td></tr></table></figure></p>
+<p>首先新增一個 celery.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">proj</div><div class="line">├── manage.py</div><div class="line">├── myapp</div><div class="line">└── proj</div><div class="line">    ├── __init__.py</div><div class="line">    ├── settings.py</div><div class="line">    ├── urls.py</div><div class="line">    ├── views.py</div><div class="line">    ├── wsgi.py</div><div class="line">    └── celery.py   # 新增</div></pre></td></tr></table></figure></p>
+<h4 id="celery-py"><a href="#celery-py" class="headerlink" title="celery.py"></a>celery.py</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">from __future__ import absolute_import</div><div class="line">import os</div><div class="line">from celery import Celery</div><div class="line"></div><div class="line"># set the default Django settings module for the &apos;celery&apos; program.</div><div class="line">os.environ.setdefault(&apos;DJANGO_SETTINGS_MODULE&apos;, &apos;proj.settings&apos;)</div><div class="line"></div><div class="line">from django.conf import settings  # noqa</div><div class="line"></div><div class="line">app = Celery(&apos;proj&apos;)</div><div class="line"></div><div class="line"># Using a string here means the worker will not have to</div><div class="line"># pickle the object when using Windows.</div><div class="line">app.config_from_object(&apos;django.conf:settings&apos;)</div><div class="line">app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)</div><div class="line"></div><div class="line">@app.task(bind=True)</div><div class="line">def debug_task(self):</div><div class="line">    print(&apos;Request: &#123;0!r&#125;&apos;.format(self.request))</div></pre></td></tr></table></figure>
+<p>然後在 <code>proj/proj/__int__.py</code> 添加程式碼。讓我們能使用這個 celery app。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">proj</div><div class="line">├── manage.py</div><div class="line">├── myapp</div><div class="line">└── proj</div><div class="line">    ├── __init__.py   # 這邊</div><div class="line">    ├── settings.py</div><div class="line">    ├── urls.py</div><div class="line">    ├── views.py</div><div class="line">    ├── wsgi.py</div><div class="line">    └── celery.py</div></pre></td></tr></table></figure></p>
+<h4 id="int-py"><a href="#int-py" class="headerlink" title="__int__.py"></a>__int__.py</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">from __future__ import absolute_import</div><div class="line"></div><div class="line"># This will make sure the app is always imported when</div><div class="line"># Django starts so that shared_task will use this app.</div><div class="line">from .celery import app as celery_app  # noqa</div></pre></td></tr></table></figure>
+<p><hr><br>Note that this example project layout is suitable for larger projects, for simple projects you may use a single contained module that defines both the app and tasks, like in the <a href="http://docs.celeryproject.org/en/3.1/getting-started/first-steps-with-celery.html#tut-celery" target="_blank" rel="external">First Steps with Celery</a> tutorial.</p>
+<p>Let’s break down what happens in the first module, first we import absolute imports from the future, so that our celery.py module will not clash with the library:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">from __future__ import absolute_import</div></pre></td></tr></table></figure></p>
+<p>Then we set the default <code>DJANGO_SETTINGS_MODULE</code> for the <code>celery</code> command-line program:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">os.environ.setdefault(&apos;DJANGO_SETTINGS_MODULE&apos;, &apos;proj.settings&apos;)</div></pre></td></tr></table></figure></p>
+<p>Specifying the settings here means the celery command line program will know where your Django project is. This statement must always appear before the app instance is created, which is what we do next:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app = Celery(&apos;proj&apos;)</div></pre></td></tr></table></figure></p>
+<p>This is your instance of the library, you can have many instances but there’s probably no reason for that when using Django.</p>
+<p>We also add the Django settings module as a configuration source for Celery. This means that you don’t have to use multiple configuration files, and instead configure Celery directly from the Django settings.</p>
+<p>You can pass the object directly here, but using a string is better since then the worker doesn’t have to serialize the object when using Windows or execv:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.config_from_object(&apos;django.conf:settings&apos;)</div></pre></td></tr></table></figure></p>
+<p>Next, a common practice for reusable apps is to define all tasks in a separate tasks.py module, and Celery does have a way to autodiscover these modules:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)</div></pre></td></tr></table></figure></p>
+<p><hr><br>接下來在 <code>proj/proj/settings.py</code> 添加 Celery 設定。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">proj</div><div class="line">├── manage.py</div><div class="line">├── myapp</div><div class="line">└── proj</div><div class="line">    ├── __init__.py</div><div class="line">    ├── settings.py   # 這邊</div><div class="line">    ├── urls.py</div><div class="line">    ├── views.py</div><div class="line">    ├── wsgi.py</div><div class="line">    └── celery.py</div></pre></td></tr></table></figure></p>
+<h4 id="settings-py"><a href="#settings-py" class="headerlink" title="settings.py"></a>settings.py</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># Celery settings</div><div class="line"># 如果rabbitmq運行在默認設置下，CELERY不需要其他信息，只要amqp://即可。</div><div class="line"># BROKER_URL = &apos;amqp://guest:guest@localhost:5672//&apos;</div><div class="line">BROKER_URL = &apos;amqp://&apos;</div><div class="line">CELERY_RESULT_BACKEND = &apos;amqp://&apos;</div><div class="line">#: Only add pickle to this list if your broker is secured</div><div class="line">#: from unwanted access (see userguide/security.html)</div><div class="line">CELERY_ACCEPT_CONTENT = [&apos;json&apos;]</div><div class="line">CELERY_TASK_SERIALIZER = &apos;json&apos;</div><div class="line">CELERY_RESULT_SERIALIZER = &apos;json&apos;</div><div class="line">CELERY_TIMEZONE = &apos;Asia/Taipei&apos;</div><div class="line">CELERY_ENABLE_UTC = True</div></pre></td></tr></table></figure>
+<p>接下來到 <code>proj/myapp</code> 新增 task.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">proj</div><div class="line">├── manage.py</div><div class="line">├── myapp</div><div class="line">|   ├── __init__.py</div><div class="line">|   ├── admin.py</div><div class="line">|   ├── models.py</div><div class="line">|   ├── tests.py</div><div class="line">|   ├── view.py</div><div class="line">|   └── tasks.py       #新增</div><div class="line">└── proj</div></pre></td></tr></table></figure></p>
+<h4 id="tasks-py"><a href="#tasks-py" class="headerlink" title="tasks.py"></a>tasks.py</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">from __future__ import absolute_import</div><div class="line"></div><div class="line">from celery import shared_task</div><div class="line"></div><div class="line">@shared_task</div><div class="line">def add(x, y):</div><div class="line">    return x + y</div><div class="line"></div><div class="line">@shared_task</div><div class="line">def mul(x, y):</div><div class="line">    return x * y</div><div class="line"></div><div class="line">@shared_task</div><div class="line">def xsum(numbers):</div><div class="line">    return sum(numbers)</div></pre></td></tr></table></figure>
+<h4 id="啟動-worker"><a href="#啟動-worker" class="headerlink" title="啟動 worker  #"></a>啟動 worker  <a href="#啟動" id="啟動">#</a></h4><p>在平時使用 <code>python manage.py runserver</code> 的目錄下輸入指令即可啟動 celery worker<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">celery -A pqrl worker -l info</div></pre></td></tr></table></figure></p>
+<p><img src="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/run_celery.png" alt="啟動成功畫面" width="50%" height="50%"></p>
+<h4 id="測試"><a href="#測試" class="headerlink" title="測試 #"></a>測試 <a href="#測試" id="測試">#</a></h4><p>接下來測試是否能運行。再開啟一個 cmd。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python manage.py shell</div></pre></td></tr></table></figure></p>
+<p>進入 shell 後，輸入命令。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">from myapp.tasks import add</div><div class="line">add(5,5)</div><div class="line">&gt;&gt; 10</div><div class="line">results = add.delay(5,5)   # 加了.delay 後會發現 worker 開始運作</div><div class="line">results.get()</div><div class="line">&gt;&gt; 10</div></pre></td></tr></table></figure></p>
+<p>成功運行。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference  #"></a>Reference  <a href="#Reference" id="Reference">#</a></h2><p><a href="http://docs.celeryproject.org/en/3.1/django/first-steps-with-django.html#using-celery-with-django" target="_blank" rel="external">First steps with Django</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最新版的 Celery 不支援 Windows，網路上教學大部分都是Linux系統，想讓它動起來花了點心力，這邊紀錄一下過程。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="https://zxc7415239.github.io/categories/Python/"/>
+    
+      <category term="Django" scheme="https://zxc7415239.github.io/categories/Python/Django/"/>
+    
+      <category term="Celery" scheme="https://zxc7415239.github.io/categories/Python/Django/Celery/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Blog 管理</title>
+    <link href="https://zxc7415239.github.io/2017/04/22/Blog-%E7%AE%A1%E7%90%86/"/>
+    <id>https://zxc7415239.github.io/2017/04/22/Blog-管理/</id>
+    <published>2017-04-21T17:10:48.000Z</published>
+    <updated>2017-04-22T11:48:39.157Z</updated>
+    
+    <content type="html"><![CDATA[<p>這邊是介紹如何管理BLOG，並能在不同電腦上寫 Blog。<br><a id="more"></a></p>
+<ul>
+<li><a href="#新建">新建分支，推送源碼</a></li>
+<li><a href="#管理">日常 Blog 管理</a><ul>
+<li><a href="#發新文章">發新文章</a></li>
+<li><a href="#維護">Blog 維護</a></li>
+</ul>
+</li>
+<li><a href="#Reference">Reference</a></li>
+</ul>
+<h2 id="新建分支，推送源碼"><a href="#新建分支，推送源碼" class="headerlink" title="新建分支，推送源碼 #"></a>新建分支，推送源碼 <a href="#新建" id="新建">#</a></h2><p>為了便於在不同的電腦上寫 Blog，需要對 Blog 內容進行同步，我們使用 Github 分支(branch)來解決這個問題。<br>首先到 <a href="https://github.com/" target="_blank" rel="external">Github</a> 為倉庫新增分支，分支名稱為 hexo。<br>並到右上方 Settings 中，將 branches 選項中的 default 改成 hexo。</p>
+<p><img src="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/%E5%89%B5%E5%BB%BA%E5%88%86%E6%94%AF.png" alt="創建分支" width="50%" height="50%"><br>並到本地端放置專案的資料夾中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Github                     # 放置專案的資料夾</div><div class="line">├── yourname.github.io     # 之前生成 包含 hexo 套件的倉庫</div><div class="line">└── MarkdownPhotos         # 放置 blog 使用圖片的倉庫</div></pre></td></tr></table></figure></p>
+<p>新增一個資料夾，名稱任意，之後要放 blog 資料夾用的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Github</div><div class="line">├── yourname.github.io</div><div class="line">├── MarkdownPhotos</div><div class="line">└── Blog                   # 新增</div></pre></td></tr></table></figure></p>
+<p>將 Git Bash 中的路徑定位到 <code>GitHub/blog</code> 中。將 Github 上的倉庫拉到本地端。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># git bash 上面的路徑大概長這樣</div><div class="line">You-PC@You  /e/Documents/GitHub/blog</div><div class="line">$ git clone git@github.com:yourname/yourname.github.io.git</div></pre></td></tr></table></figure></p>
+<p>現在 blog 中多一個 yourname.github.io 資料夾。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Github</div><div class="line">├── yourname.github.io</div><div class="line">├── MarkdownPhotos</div><div class="line">└── Blog</div><div class="line">    └── yourname.github.io   # 新增</div></pre></td></tr></table></figure></p>
+<p>將 Git Bash 中的路徑定位到 <code>Github/Blog/yourname.github.io</code> 中。<br>此時 Git Bash 顯示當前分支為 hexo，即 default 分支。<br>接下來輸入指令清空 hexo 目錄。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># git bash 上面的路徑大概長這樣，後面 branch 變成 hexo。</div><div class="line">You-PC@You  /e/Documents/GitHub/blog/yourname.github.io (hexo)</div><div class="line">$ rm -rf *</div><div class="line">$ git add .</div><div class="line">$ git commit -m &apos;init&apos;</div><div class="line">$ git push origin hexo</div></pre></td></tr></table></figure></p>
+<p>此動作會清空hexo分支下原有透過 <code>hexo d</code> 部署的 html 靜態檔案。<br>然後在手動將 <code>Github/yourname.github.io</code> 的檔案複製到 <code>Github/Blog/yourname.github.io</code> 中。<br>記得不要複製到 .git 資料夾(預設是隱藏狀態)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Github</div><div class="line">├── yourname.github.io</div><div class="line">|   ├── .git                     # .git 不要複製到</div><div class="line">|   └── other files/floders      # 複製這些檔案</div><div class="line">├── MarkdownPhotos</div><div class="line">└── Blog</div><div class="line">    └── yourname.github.io       # 丟到這個只剩下 .git 的資料夾中</div><div class="line">        └── .git</div></pre></td></tr></table></figure></p>
+<p>複製完後 <code>Github/yourname.github.io</code> 這個資料夾就能刪除了。<br>接下來透過指令將本地端的 Blog 源碼推送到 Github 的 hexo 目錄下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">You-PC@You  /e/Documents/GitHub/blog/yourname.github.io (hexo) # 目前路徑</div><div class="line">$ git add .</div><div class="line">$ git commit -m &apos;init&apos;</div><div class="line">$ git push origin hexo</div></pre></td></tr></table></figure></p>
+<p>注意：Blog 主配置文件 _config.yml 中的 deploy 參數，部署的分支應為 master。<br>以後在 hexo 分支下寫 Blog，然後 <code>hexo d</code> 部署到 master 分支下。</p>
+<h2 id="日常-Blog-管理"><a href="#日常-Blog-管理" class="headerlink" title="日常 Blog 管理 #"></a>日常 Blog 管理 <a href="#管理" id="管理">#</a></h2><h4 id="發新文章"><a href="#發新文章" class="headerlink" title="發新文章  #"></a>發新文章  <a href="#發新文章" id="發新文章">#</a></h4><p>執行 <code>hexo new</code> 命令會在 <code>/source/_posts</code> 下生成 post_name.md。<br>編輯語法為 <a href="http://markdown.tw/" target="_blank" rel="external">Markdown</a>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo new [layout] &apos;post_name&apos;   # 發表文章</div><div class="line">hexo new &apos;post_name&apos;            # 不選layout時，預設是 post</div><div class="line">hexo n &apos;post_name&apos;              # 簡寫</div></pre></td></tr></table></figure></p>
+<p>layout 模板文件在目錄scaffolds下。<br>post.md 預設內容如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: &#123;&#123; title &#125;&#125;</div><div class="line">date: &#123;&#123; date &#125;&#125;</div><div class="line">tags:</div><div class="line">---</div></pre></td></tr></table></figure></p>
+<p>如果想在每篇文章中添加 categories 分類信息，只需要修改 post.md 文件即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: &#123;&#123; title &#125;&#125;  #文章名稱</div><div class="line">date: &#123;&#123; date &#125;&#125;    #文章發布日期</div><div class="line">categories:         #文章分類（可以為空）</div><div class="line">tags:               #文章標籤（可以為空），多標籤格式[tag1,tag2,tag3]</div><div class="line">---</div></pre></td></tr></table></figure></p>
+<p>不想在首頁顯示全文可使用摘要，在 post_name.md 中使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">以上是摘要</div><div class="line">&lt;!--more--&gt;</div><div class="line">以下是剩下文章</div></pre></td></tr></table></figure></p>
+<p>more 以上內容即是摘要信息，顯示在首頁中，點擊 Read More 按鈕打開全文。</p>
+<h4 id="Blog-維護"><a href="#Blog-維護" class="headerlink" title="Blog 維護 #"></a>Blog 維護 <a href="#維護" id="維護">#</a></h4><p>日常發文，修改文章都在 hexo 分支下進行，平時先透過本地伺服器編輯和觀看內容。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure></p>
+<p>編輯完成後，執行命令將修改過的源碼推送至 hexo 分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">You-PC@You  /e/Documents/GitHub/blog/yourname.github.io (hexo) # 當前路徑</div><div class="line">git add .</div><div class="line">git commit -m &apos;XXX&apos;</div><div class="line">git push origin hexo</div></pre></td></tr></table></figure></p>
+<p>然後執行命令產生靜態頁面並部署到 master 分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure></p>
+<p>最後通過 <code>https://yourname.github.io/</code> 查看。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference  #"></a>Reference  <a href="#Reference" id="Reference">#</a></h2><p><a href="http://yurixu.com/categories/Hexo/" target="_blank" rel="external">Hexo搭建个人博客</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;這邊是介紹如何管理BLOG，並能在不同電腦上寫 Blog。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Hexo" scheme="https://zxc7415239.github.io/categories/Hexo/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo + Github 簡單使用教學</title>
+    <link href="https://zxc7415239.github.io/2017/04/21/Hexo-Github-%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8/"/>
+    <id>https://zxc7415239.github.io/2017/04/21/Hexo-Github-簡單使用教學/</id>
+    <published>2017-04-21T13:03:41.000Z</published>
+    <updated>2017-04-23T14:58:37.926Z</updated>
+    
+    <content type="html"><![CDATA[<p>這邊主要就紀錄我使用 Hexo 部署到 Github 上的流程。<br><a id="more"></a></p>
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#建置環境">建置環境</a></li>
+<li><a href="#建立流程">建立流程</a><ul>
+<li><a href="#安裝Node">安裝 Node.js</a></li>
+<li><a href="#安裝Github">安裝 Github Desktop</a></li>
+<li><a href="#Github使用">Github Desktop 使用</a></li>
+<li><a href="#安裝Hexo">安裝 Hexo</a></li>
+<li><a href="#部署Hexo">部署 Hexo 到 Github</a></li>
+</ul>
+</li>
+<li><a href="#自訂義部分">自訂義部分</a><ul>
+<li><a href="#程式碼區塊">程式碼區塊</a></li>
+<li><a href="#字體">字體</a></li>
+<li><a href="#相反">Newer Older 相反</a></li>
+</ul>
+</li>
+<li><a href="#常用指令">常用 Hexo 指令</a></li>
+<li><a href="#Reference">Reference</a></li>
+</ul>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言 #"></a>前言 <a href="#前言" id="前言">#</a></h2><p>因為第一次使用 Github，Node.js 和 Hexo，所以只有會一點基礎東西。<br>主要是幫助從沒接觸過的人能快速上手。</p>
+<h2 id="建置環境"><a href="#建置環境" class="headerlink" title="建置環境 #"></a>建置環境 <a href="#建置環境" id="建置環境">#</a></h2><p>OS: Windows 8.1<br><a href="https://hexo.io/zh-tw/" target="_blank" rel="external">Hexo</a>: 3.3.1<br><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>: 6.10.2 LTS<br><a href="https://desktop.github.com/" target="_blank" rel="external">Github Desktop</a></p>
+<h2 id="建立流程"><a href="#建立流程" class="headerlink" title="建立流程 #"></a>建立流程 <a href="#建立流程" id="建立流程">#</a></h2><h4 id="安裝-Node-js"><a href="#安裝-Node-js" class="headerlink" title="安裝 Node.js #"></a>安裝 Node.js <a href="#安裝Node" id="安裝Node">#</a></h4><p>去 <a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a> 官網下載 windows x64 版本直接安裝即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ node -v   # 可測試是否安裝成功</div><div class="line">&gt;&gt; v6.10.2</div></pre></td></tr></table></figure></p>
+<h4 id="安裝-Github-Desktop"><a href="#安裝-Github-Desktop" class="headerlink" title="安裝 Github Desktop #"></a>安裝 Github Desktop <a href="#安裝Github" id="安裝Github">#</a></h4><p>去 <a href="https://desktop.github.com/" target="_blank" rel="external">Github Desktop</a> 官網下載直接安裝即可。</p>
+<h4 id="Github-Desktop-使用"><a href="#Github-Desktop-使用" class="headerlink" title="Github Desktop 使用 #"></a>Github Desktop 使用 <a href="#Github使用" id="Github使用">#</a></h4><p>去 <a href="https://github.com/" target="_blank" rel="external">Github</a> 官網登入<br>新增一個倉庫(Repositories)，倉庫名稱為 <code>yourname.github.io</code> [yourname是你的帳號]。</p>
+<p><img src="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/%E6%96%B0%E5%A2%9E%E5%80%89%E5%BA%AB.png" alt="創建倉庫" width="50%" height="50%"><br>開啟剛安裝好的 Github Desktop ，並將剛創好的倉庫存到本地端。</p>
+<p><img src="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/%E9%96%8B%E5%95%9Fgui.png" alt="存下倉庫" width="50%" height="50%"><br>然後右鍵剛拉下來的倉庫，選取 Open in Git Shell 打開 Git bash(option可選)，執行指令將 Github 上的倉庫拉到本地端。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git pull origin master</div></pre></td></tr></table></figure></p>
+<p>Github Desktop 右上的 Sync 按鈕具有 pull/push 功能，不想打指令可以多嘗試。<br>使用 Github Desktop 的好處是不必像其他教學一樣，不需要配置 SSH Key 和 設定 origin 位置路徑，省了兩個步驟。</p>
+<h4 id="安裝-Hexo"><a href="#安裝-Hexo" class="headerlink" title="安裝 Hexo  #"></a>安裝 Hexo  <a href="#安裝Hexo" id="安裝Hexo">#</a></h4><p>安裝好 Node.js 後，就能使用 npm 安裝 hexo。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo-cli</div></pre></td></tr></table></figure></p>
+<p>輸入以下指令可查看版本。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo version</div></pre></td></tr></table></figure></p>
+<p>接下來，依序輸入以下指令，初始化我們的 Blog。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># git bash 上面的路徑大概長這樣</div><div class="line">You-PC@You  /e/Documents/GitHub/yourname.github.io (master)</div><div class="line">$ hexo init		# 初始化 blog</div><div class="line"># 輸入上面那個指令後 hexo 會產生新的 .git蓋掉舊的 .git</div><div class="line">$ git init              # 所以就重新產生一個 .git</div><div class="line">$ npm install		# 安裝相關套件</div><div class="line">$ hexo g		# 產生靜態頁面</div><div class="line">$ hexo s		# 啟動本地伺服器</div></pre></td></tr></table></figure></p>
+<p>網址列輸入 <code>http://localhost:4000</code> ，就能觀看 Blog 了。<br>預設會有一個 Hello World 貼文。</p>
+<h4 id="部署-Hexo-到-Github"><a href="#部署-Hexo-到-Github" class="headerlink" title="部署 Hexo 到 Github  #"></a>部署 Hexo 到 Github  <a href="#部署Hexo" id="部署Hexo">#</a></h4><p>到我們本地 yourname.github.io 的資料夾中能找到 _config.yml 文件。<br>這是 Hexo 的全域配置文件。詳細參數設定可到 <a href="http://yurixu.com/blog/2016/01/04/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/" target="_blank" rel="external">Hexo搭建个人博客（二）</a> 查看<br>這邊拉到最底部修改一下 deploy 參數。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># Deployment</div><div class="line">## Docs: https://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repository: git@github.com:yourname/yourname.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
+<p>這邊是 YAML 語法，冒號後面記得空一格，照上面的設定輸入，倉庫的 SSH 地址如下圖可獲得。</p>
+<p><img src="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/SSH.png" alt="SSH地址鏈接" width="50%" height="50%"><br>執行以下命令安裝 hexo-deployer-git，沒安裝套件前輸入 hexo d 會出現 Error。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
+<p>產生靜態頁面後，部署到 Github。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo d -g     # 等同輸入 hexo g 和 hexo d 指令</div></pre></td></tr></table></figure></p>
+<p>再來就可以上 <code>https://yourname.github.io/</code> 查看 Blog 了。</p>
+<h2 id="自訂義部分"><a href="#自訂義部分" class="headerlink" title="自訂義部分 #"></a>自訂義部分 <a href="#自訂義部分" id="自訂義部分">#</a></h2><p>這邊是我有用到客製化的一些紀錄<br>如果動過這區的東西，要砍掉舊的靜態檔案，才會換成修改過的靜態檔案。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div></pre></td></tr></table></figure></p>
+<p>清除快取檔案 <code>(db.json)</code> 和已產生的靜態檔案 <code>(public)</code>。</p>
+<h4 id="程式碼區塊"><a href="#程式碼區塊" class="headerlink" title="程式碼區塊 #"></a>程式碼區塊 <a href="#程式碼區塊" id="程式碼區塊">#</a></h4><p>找到文件 <code>/themes/landscape/source/css/_partial/highlight.styl</code> 中17行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">margin: 0 article-padding * -1</div></pre></td></tr></table></figure></p>
+<p>換成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">margin: auto</div></pre></td></tr></table></figure></p>
+<p>這樣程式碼區塊就會與兩側保持一定間距。<br>在第22行添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">border-radius：8px</div></pre></td></tr></table></figure></p>
+<p>使程式碼區塊呈現圓角效果。</p>
+<h4 id="字體"><a href="#字體" class="headerlink" title="字體 #"></a>字體 <a href="#字體" id="字體">#</a></h4><p>找到文件 <code>/themes/landscape/source/css/_variables.styl</code> 修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">font-sans = Microsoft JhengHei, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif</div><div class="line">font-size = 16px</div></pre></td></tr></table></figure></p>
+<h4 id="Newer-Older-相反"><a href="#Newer-Older-相反" class="headerlink" title="Newer Older 相反 #"></a>Newer Older 相反 <a href="#相反" id="相反">#</a></h4><p>突然發現下方 Newer Older 居然連結相反了。<br>到 <code>/themes/landscape/layout/_partial/post/nav.ejs</code> 修改。<br>把 prev 跟 next 對調一下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;% if (post.next || post.prev)&#123; %&gt;</div><div class="line">&lt;nav id=&quot;article-nav&quot;&gt;</div><div class="line">  &lt;% if (post.next)&#123; %&gt;</div><div class="line">    &lt;a href=&quot;&lt;%- url_for(post.next.path) %&gt;&quot; id=&quot;article-nav-newer&quot; class=&quot;article-nav-link-wrap&quot;&gt;</div><div class="line">      &lt;strong class=&quot;article-nav-caption&quot;&gt;&lt;%= __(&apos;newer&apos;) %&gt;&lt;/strong&gt;</div><div class="line">      &lt;div class=&quot;article-nav-title&quot;&gt;</div><div class="line">        &lt;% if (post.next.title)&#123; %&gt;</div><div class="line">          &lt;%= post.next.title %&gt;</div><div class="line">        &lt;% &#125; else &#123; %&gt;</div><div class="line">          (no title)</div><div class="line">        &lt;% &#125; %&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    &lt;/a&gt;</div><div class="line">  &lt;% &#125; %&gt;</div><div class="line">  &lt;% if (post.prev)&#123; %&gt;</div><div class="line">    &lt;a href=&quot;&lt;%- url_for(post.prev.path) %&gt;&quot; id=&quot;article-nav-older&quot; class=&quot;article-nav-link-wrap&quot;&gt;</div><div class="line">      &lt;strong class=&quot;article-nav-caption&quot;&gt;&lt;%= __(&apos;older&apos;) %&gt;&lt;/strong&gt;</div><div class="line">      &lt;div class=&quot;article-nav-title&quot;&gt;&lt;%= post.prev.title %&gt;&lt;/div&gt;</div><div class="line">    &lt;/a&gt;</div><div class="line">  &lt;% &#125; %&gt;</div><div class="line">&lt;/nav&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="常用-Hexo-指令"><a href="#常用-Hexo-指令" class="headerlink" title="常用 Hexo 指令 #"></a>常用 Hexo 指令 <a href="#常用指令" id="常用指令">#</a></h2><p>發文<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo new &quot;postName&quot; 		# 產生新的文章</div><div class="line">$ hexo new page &quot;pageName&quot;	# 產生新的頁面</div></pre></td></tr></table></figure></p>
+<p>Hexo提供了常用命令的簡寫<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo n == hexo new   		# 產生新的 post/page/draft</div><div class="line">$ hexo g == hexo generate  	# 產生靜態頁面</div><div class="line">$ hexo s == hexo server		# 啟動本地瀏覽</div><div class="line">$ hexo d == hexo deploy		# 部署文件至 Github 上</div></pre></td></tr></table></figure></p>
+<p>指令組合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo d -g	# 產生靜態文件後，部署 blog</div><div class="line">$ hexo s -g	# 產生靜態文件後，預覽 blog</div></pre></td></tr></table></figure></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference  #"></a>Reference  <a href="#Reference" id="Reference">#</a></h2><p><a href="https://mousyball.github.io/2017/01/01/Hexo-Github-Build/#an-zhuang-github-desktop" target="_blank" rel="external">Hexo + Github 零基礎建立過程</a><br><a href="http://yurixu.com/categories/Hexo/" target="_blank" rel="external">Hexo搭建个人博客</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;這邊主要就紀錄我使用 Hexo 部署到 Github 上的流程。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Hexo" scheme="https://zxc7415239.github.io/categories/Hexo/"/>
+    
+    
+  </entry>
+  
+</feed>
