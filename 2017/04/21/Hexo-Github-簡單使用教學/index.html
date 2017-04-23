@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/%E6%96%B0%E5%A2%9E%E5%80%89%E5%BA%AB.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/%E9%96%8B%E5%95%9Fgui.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/SSH.png">
-<meta property="og:updated_time" content="2017-04-22T06:56:57.019Z">
+<meta property="og:updated_time" content="2017-04-23T12:04:40.386Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + Github 簡單使用教學">
 <meta name="twitter:description" content="這邊主要就紀錄我使用 Hexo 部署到 Github 上的流程。">
@@ -128,7 +128,7 @@
 <p>Github Desktop 右上的 Sync 按鈕具有 pull/push 功能，不想打指令可以多嘗試。<br>使用 Github Desktop 的好處是不必像其他教學一樣，不需要配置 SSH Key 和 設定 origin 位置路徑，省了兩個步驟。</p>
 <h4 id="安裝-Hexo"><a href="#安裝-Hexo" class="headerlink" title="安裝 Hexo  #"></a>安裝 Hexo  <a href="#安裝Hexo" id="安裝Hexo">#</a></h4><p>安裝好 Node.js 後，就能使用 npm 安裝 hexo。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo-cli</div></pre></td></tr></table></figure></p>
 <p>輸入以下指令可查看版本。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo version</div></pre></td></tr></table></figure></p>
-<p>接下來，依序輸入以下指令，初始化我們的 Blog。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># git bash 上面的路徑大概長這樣</div><div class="line">You-PC@You  /e/Documents/GitHub/zxc7415239.github.io (master)</div><div class="line">$ hexo init		# 初始化 blog</div><div class="line"># 輸入上面那個指令後 hexo 會產生新的 .git蓋掉舊的 .git</div><div class="line">$ git init              # 所以就重新產生一個 .git</div><div class="line">$ npm install		# 安裝相關套件</div><div class="line">$ hexo g		# 產生靜態頁面</div><div class="line">$ hexo s		# 啟動本地伺服器</div></pre></td></tr></table></figure></p>
+<p>接下來，依序輸入以下指令，初始化我們的 Blog。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># git bash 上面的路徑大概長這樣</div><div class="line">You-PC@You  /e/Documents/GitHub/yourname.github.io (master)</div><div class="line">$ hexo init		# 初始化 blog</div><div class="line"># 輸入上面那個指令後 hexo 會產生新的 .git蓋掉舊的 .git</div><div class="line">$ git init              # 所以就重新產生一個 .git</div><div class="line">$ npm install		# 安裝相關套件</div><div class="line">$ hexo g		# 產生靜態頁面</div><div class="line">$ hexo s		# 啟動本地伺服器</div></pre></td></tr></table></figure></p>
 <p>網址列輸入 <code>http://localhost:4000</code> ，就能觀看 Blog 了。<br>預設會有一個 Hello World 貼文。</p>
 <h4 id="部署-Hexo-到-Github"><a href="#部署-Hexo-到-Github" class="headerlink" title="部署 Hexo 到 Github  #"></a>部署 Hexo 到 Github  <a href="#部署Hexo" id="部署Hexo">#</a></h4><p>到我們本地 yourname.github.io 的資料夾中能找到 _config.yml 文件。<br>這是 Hexo 的全域配置文件。詳細參數設定可到 <a href="http://yurixu.com/blog/2016/01/04/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/" target="_blank" rel="external">Hexo搭建个人博客（二）</a> 查看<br>這邊拉到最底部修改一下 deploy 參數。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># Deployment</div><div class="line">## Docs: https://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repository: git@github.com:yourname/yourname.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
 <p>這邊是 YAML 語法，冒號後面記得空一格，照上面的設定輸入，倉庫的 SSH 地址如下圖可獲得。</p>
@@ -150,7 +150,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zxc7415239.github.io/2017/04/21/Hexo-Github-簡單使用教學/" data-id="cj1uleptm000448c2a8ygyw7p" class="article-share-link">Share</a>
+      <a data-url="https://zxc7415239.github.io/2017/04/21/Hexo-Github-簡單使用教學/" data-id="cj1un5wgo0005icc2dnxz7g0n" class="article-share-link">Share</a>
       
       
     </footer>
