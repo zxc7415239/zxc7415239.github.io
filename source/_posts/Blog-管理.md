@@ -81,7 +81,7 @@ $ git add .
 $ git commit -m 'init'
 $ git push origin hexo
 ```
-注意：Blog 主配置文件 _config.yml 中的 deploy 參數，部署的分支應為 master。
+在 Blog 配置文件 _config.yml 中的 deploy 參數，部署的分支應為 master。
 以後在 hexo 分支下寫 Blog，然後 ``hexo d`` 部署到 master 分支下。
 
 ## 日常 Blog 管理 <a href="#管理" id="管理">#</a>
@@ -102,13 +102,13 @@ date: {{ date }}
 tags:
 ---
 ```
-如果想在每篇文章中添加 categories 分類信息，只需要修改 post.md 文件即可。
+想在每篇文章中添加 categories 分類信息，在 post.md 中添加信息。
 ```
 ---
-title: {{ title }}  #文章名稱
-date: {{ date }}    #文章發布日期
-categories:         #文章分類（可以為空）
-tags:               #文章標籤（可以為空），多標籤格式[tag1,tag2,tag3]
+title: {{ title }}
+date: {{ date }}
+categories:
+tags:
 ---
 ```
 不想在首頁顯示全文可使用摘要，在 post_name.md 中使用。
@@ -122,14 +122,14 @@ more 以上內容即是摘要信息，顯示在首頁中，點擊 Read More 按�
 #### Blog 維護 <a href="#維護" id="維護">#</a>
 日常發文，修改文章都在 hexo 分支下進行，平時先透過本地伺服器編輯和觀看內容。
 ```
-hexo s
+$ hexo s
 ```
-編輯完成後，執行命令產生靜態頁面並部署到 master 分支。
+編輯完成後，執行命令產生靜態頁面並部署到遠端 master 分支。
 ```
-hexo g
-hexo d
+$ hexo g
+$ hexo d
 ```
-然後執行命令將修改過的源碼推送至 hexo 分支。
+然後執行命令將修改過的源碼推送至遠端 hexo 分支。
 ```
 You-PC@You  /e/Documents/GitHub/blog/yourname.github.io (hexo) # 當前路徑
 git add .
@@ -159,7 +159,7 @@ $ git commit -m "XXX"
 $ git push origin hexo
 ```
 ##### 目前不在上一次 push 的電腦上 <a href="#不同" id="不同">#</a>
-本地 hexo 分支和遠程 hexo 分支是完全同步的。需先從倉庫拉取更新內容。
+本地 hexo 分支和遠程 hexo 分支是沒有同步的。需先從倉庫拉取更新內容。
 ````
 $ git pull origin hexo
 ```
