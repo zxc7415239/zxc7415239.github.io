@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Shan's Blog">
 <meta property="og:description" content="這邊是介紹如何管理BLOG，並能在不同電腦上寫 Blog。">
 <meta property="og:image" content="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/%E5%89%B5%E5%BB%BA%E5%88%86%E6%94%AF.png">
-<meta property="og:updated_time" content="2017-04-24T08:44:51.481Z">
+<meta property="og:updated_time" content="2017-04-24T13:06:00.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Blog 管理">
 <meta name="twitter:description" content="這邊是介紹如何管理BLOG，並能在不同電腦上寫 Blog。">
@@ -127,14 +127,15 @@
 <p>然後執行命令將修改過的源碼推送至 hexo 分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">You-PC@You  /e/Documents/GitHub/blog/yourname.github.io (hexo) # 當前路徑</div><div class="line">git add .</div><div class="line">git commit -m &apos;XXX&apos;</div><div class="line">git push origin hexo</div></pre></td></tr></table></figure></p>
 <p>最後通過 <code>https://yourname.github.io/</code> 查看。</p>
 <h4 id="在其他電腦上使用"><a href="#在其他電腦上使用" class="headerlink" title="在其他電腦上使用 #"></a>在其他電腦上使用 <a href="#其他" id="其他">#</a></h4><p>安裝 <a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a> 和 <a href="https://desktop.github.com/" target="_blank" rel="external">Github Desktop</a><br>用 Github Desktop clone 到本地端。(能幫你弄好SSH Key)<br>配置好環境。千萬不要使用 <code>hexo init</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo-cli</div><div class="line">$ npm install</div><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
-<p>安裝完成後就可以進行 Blog 維護了。<br>編輯完成後，接下來是同步的工作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git add .               # 添加源文件</div><div class="line">$ git commit -m &quot;&quot;        # git提交</div><div class="line">$ git pull origin hexo    # 先拉原來Github分支上的源文件到本地，進行合併</div><div class="line">$ git push origin hexo    # 比較解決前後版本衝突後，push源文件到Github的分支</div></pre></td></tr></table></figure></p>
+<p>安裝完成後，請刪除 <code>.deploy_git</code> 文件。不刪直接 <code>hexo d</code> 會把整個文件推送上去。<br>這時候刪掉在 <code>hexo d</code> 就行了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div></pre></td></tr></table></figure></p>
+<p>接下來就可以進行 Blog 維護了。<br>在開始編輯前，要先做同步的工作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git add .               # 添加源文件</div><div class="line">$ git commit -m &quot;&quot;        # git提交</div><div class="line">$ git pull origin hexo    # 先拉原來Github分支上的源文件到本地，進行合併</div><div class="line">$ git push origin hexo    # 比較解決前後版本衝突後，push源文件到Github的分支</div></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git status # 可以檢查狀態</div></pre></td></tr></table></figure>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference  #"></a>Reference  <a href="#Reference" id="Reference">#</a></h2><p><a href="http://yurixu.com/categories/Hexo/" target="_blank" rel="external">Hexo搭建个人博客</a><br><a href="http://www.jianshu.com/p/6fb0b287f950" target="_blank" rel="external">多设备同步hexo搭建的Github博客</a><br><a href="http://masikkk.com/blog/hexo-3-source-backup-and-sync-between-diff-computer/" target="_blank" rel="external">Hexo博客(3)源码备份及不同电脑上的同步问题</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zxc7415239.github.io/2017/04/22/Blog-管理/" data-id="cj1w463600000zsrqmyjslu1h" class="article-share-link">Share</a>
+      <a data-url="https://zxc7415239.github.io/2017/04/22/Blog-管理/" data-id="cj1w4rgfn0000xoc234qmgis7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
