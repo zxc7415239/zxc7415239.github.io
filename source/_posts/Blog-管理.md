@@ -11,6 +11,7 @@ tags: Hexo
 * [日常 Blog 管理](#管理)
   * [發新文章](#發新文章)
   * [Blog 維護](#維護)
+  * [在其他電腦上使用](#其他)
 * [Reference](#Reference)
 
 ## 新建分支，推送源碼 <a href="#新建" id="新建">#</a>
@@ -121,19 +122,42 @@ more 以上內容即是摘要信息，顯示在首頁中，點擊 Read More 按�
 ```
 hexo s
 ```
-編輯完成後，執行命令將修改過的源碼推送至 hexo 分支。
+編輯完成後，執行命令產生靜態頁面並部署到 master 分支。
+```
+hexo g
+hexo d
+```
+然後執行命令將修改過的源碼推送至 hexo 分支。
 ```
 You-PC@You  /e/Documents/GitHub/blog/yourname.github.io (hexo) # 當前路徑
 git add .
 git commit -m 'XXX'
 git push origin hexo
 ```
-然後執行命令產生靜態頁面並部署到 master 分支。
-```
-hexo g
-hexo d
-```
 最後通過 ``https://yourname.github.io/`` 查看。
 
+#### 在其他電腦上使用 <a href="#其他" id="其他">#</a>
+安裝 [Node.js](https://nodejs.org/en/) 和 [Github Desktop](https://desktop.github.com/)
+用 Github Desktop clone 到本地端。(能幫你弄好SSH Key)
+配置好環境。千萬不要使用 ``hexo init``。
+```
+$ npm install -g hexo-cli
+$ npm install
+$ npm install hexo-deployer-git --save
+```
+安裝完成後就可以進行 Blog 維護了。
+編輯完成後，接下來是同步的工作。
+```
+$ git add .               # 添加源文件
+$ git commit -m ""        # git提交
+$ git pull origin hexo    # 先拉原來Github分支上的源文件到本地，進行合併
+$ git push origin hexo    # 比較解決前後版本衝突後，push源文件到Github的分支
+```
+
+```
+$ git status # 可以檢查狀態
+```
 ## Reference  <a href="#Reference" id="Reference">#</a>
 [Hexo搭建个人博客](http://yurixu.com/categories/Hexo/)
+[多设备同步hexo搭建的Github博客](http://www.jianshu.com/p/6fb0b287f950)
+[Hexo博客(3)源码备份及不同电脑上的同步问题](http://masikkk.com/blog/hexo-3-source-backup-and-sync-between-diff-computer/)
