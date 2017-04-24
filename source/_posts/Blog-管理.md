@@ -145,8 +145,13 @@ $ npm install -g hexo-cli
 $ npm install
 $ npm install hexo-deployer-git --save
 ```
-安裝完成後就可以進行 Blog 維護了。
-編輯完成後，接下來是同步的工作。
+安裝完成後，請刪除 ``.deploy_git`` 文件。不刪直接 ``hexo d`` 會把整個文件推送上去。
+這時候刪掉在 ``hexo d`` 就行了。
+```
+$ hexo clean
+```
+接下來就可以進行 Blog 維護了。
+在開始編輯前，要先做同步的工作。
 ```
 $ git add .               # 添加源文件
 $ git commit -m ""        # git提交
