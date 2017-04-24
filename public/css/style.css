@@ -356,8 +356,8 @@ body {
 #logo,
 #subtitle {
   text-decoration: none;
-  color: #0000e6;
-  font-weight: 300;
+  color: #fff;
+  font-weight: 700;
   text-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 #logo {
@@ -369,7 +369,7 @@ body {
   font-size: 16px;
   line-height: 16px;
   letter-spacing: 1px;
-  color: #006;
+  color: #fff;
 }
 #subtitle-wrap {
   margin-top: 16px;
@@ -382,7 +382,7 @@ body {
 .main-nav-link {
   float: left;
   color: #fff;
-  opacity: 0.6;
+  opacity: 0.9;
   text-decoration: none;
   text-shadow: 0 1px rgba(0,0,0,0.2);
   -webkit-transition: opacity 0.2s;
@@ -407,7 +407,7 @@ body {
   cursor: pointer;
 }
 .main-nav-link {
-  font-weight: 300;
+  font-weight: 700;
   letter-spacing: 1px;
 }
 @media screen and (max-width: 479px) {
@@ -511,17 +511,27 @@ body {
   clear: both;
 }
 .article-date {
+  margin: 20px 15px 0px 15px;
   float: left;
 }
+a.article-date:hover {
+  color: #258fb8;
+}
+.article-date:before {
+  font-family: FontAwesome;
+  color: #ccc;
+  content: "\f073";
+}
 .article-category {
+  margin: 20px 15px 0px 8px;
   float: left;
   line-height: 1em;
   color: #ccc;
   text-shadow: 0 1px #fff;
-  margin-left: 8px;
 }
 .article-category:before {
-  content: "\2022";
+  font-family: FontAwesome;
+  content: "\f0c6";
 }
 .article-category-link {
   margin: 0 12px 1em;

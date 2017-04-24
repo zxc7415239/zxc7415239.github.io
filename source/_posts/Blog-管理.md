@@ -12,6 +12,8 @@ tags: Hexo
   * [發新文章](#發新文章)
   * [Blog 維護](#維護)
   * [在其他電腦上使用](#其他)
+    * [目前在上一次 push 的電腦上](#相同)
+    * [目前不在上一次 push 的電腦上](#不同)
 * [Reference](#Reference)
 
 ## 新建分支，推送源碼 <a href="#新建" id="新建">#</a>
@@ -146,19 +148,28 @@ $ npm install
 $ npm install hexo-deployer-git --save
 ```
 安裝完成後，請刪除 ``.deploy_git`` 文件。不刪直接 ``hexo d`` 會把整個文件推送上去。
-這時候刪掉在 ``hexo d`` 就行了。
-```
-$ hexo clean
-```
+即使推送了也沒關係，只要刪掉 ``.deploy_git`` 文件在 ``hexo d`` 就行了。
 接下來就可以進行 Blog 維護了。
-在開始編輯前，要先做同步的工作。
+在開始編輯前，要注意同步的問題。
+##### 目前在上一次 push 的電腦上 <a href="#相同" id="相同">#</a>
+本地 hexo 分支和遠程 hexo 分支是完全同步的。可以直接開始編輯。
 ```
-$ git add .               # 添加源文件
-$ git commit -m ""        # git提交
-$ git pull origin hexo    # 先拉原來Github分支上的源文件到本地，進行合併
-$ git push origin hexo    # 比較解決前後版本衝突後，push源文件到Github的分支
+$ git add .
+$ git commit -m "XXX"
+$ git push origin hexo
 ```
-
+##### 目前不在上一次 push 的電腦上 <a href="#不同" id="不同">#</a>
+本地 hexo 分支和遠程 hexo 分支是完全同步的。需先從倉庫拉取更新內容。
+````
+$ git pull origin hexo
+```
+然後才可以直接開始編輯
+```
+$ git add .
+$ git commit -m "XXX"
+$ git push origin hexo
+```
+下列指令能檢查更新內容是否都推送上去了。
 ```
 $ git status # 可以檢查狀態
 ```
