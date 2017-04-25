@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxc7415239.github.io/"/>
-  <updated>2017-04-25T00:38:27.927Z</updated>
+  <updated>2017-04-25T05:02:26.188Z</updated>
   <id>https://zxc7415239.github.io/</id>
   
   <author>
@@ -16,11 +16,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Python抓路徑用法</title>
+    <link href="https://zxc7415239.github.io/2017-04-25-Python%E6%8A%93%E8%B7%AF%E5%BE%91%E7%94%A8%E6%B3%95/"/>
+    <id>https://zxc7415239.github.io/2017-04-25-Python抓路徑用法/</id>
+    <published>2017-04-25T04:38:56.000Z</published>
+    <updated>2017-04-25T05:02:26.188Z</updated>
+    
+    <content type="html"><![CDATA[<p>這邊紀錄一些 Python抓路徑用法。<br><a id="more"></a></p>
+<h4 id="當前目錄"><a href="#當前目錄" class="headerlink" title="當前目錄"></a>當前目錄</h4><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">print</span> os.path.dirname(os.path.abspath(sys.argv[<span class="number">0</span>])).replace(<span class="string">'\\'</span>,<span class="string">'/'</span>)</div><div class="line"><span class="keyword">print</span> os.path.abspath(os.path.dirname(sys.argv[<span class="number">0</span>])).replace(<span class="string">'\\'</span>,<span class="string">'/'</span>)</div><div class="line"><span class="keyword">print</span> os.getcwd()</div></pre></td></tr></table></figure>
+<h4 id="前一級目錄"><a href="#前一級目錄" class="headerlink" title="前一級目錄"></a>前一級目錄</h4><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> os.path.abspath(os.path.join(os.path.dirname(sys.argv[<span class="number">0</span>]), os.pardir))</div></pre></td></tr></table></figure>
+<h4 id="說明"><a href="#說明" class="headerlink" title="說明"></a>說明</h4><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sys.argv[<span class="number">0</span>]                    <span class="comment"># 當前文件路徑</span></div><div class="line">sys.path[<span class="number">0</span>]                    <span class="comment"># 當前文件路徑</span></div><div class="line">__file__：                     <span class="comment"># 當前文件路徑 可能會出問題</span></div><div class="line">os.path.dirname(file):         <span class="comment"># 某個文件所在的目錄路徑</span></div><div class="line">os.path.join(a, b, c,....):    <span class="comment"># 路徑構造 a/b/c</span></div><div class="line">os.path.abspath(path):         <span class="comment"># 將path從相對路徑轉成絕對路徑</span></div><div class="line">os.pardir:                     <span class="comment"># Linux下相當於"../"</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;這邊紀錄一些 Python抓路徑用法。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="https://zxc7415239.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://zxc7415239.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Flush output of Python print</title>
     <link href="https://zxc7415239.github.io/2017-04-23-Flush-output-of-Python-print/"/>
     <id>https://zxc7415239.github.io/2017-04-23-Flush-output-of-Python-print/</id>
     <published>2017-04-23T11:10:40.000Z</published>
-    <updated>2017-04-25T00:38:27.927Z</updated>
+    <updated>2017-04-25T04:13:16.491Z</updated>
     
     <content type="html"><![CDATA[<p>這邊紀錄如何將 print 的值 flush 到 output file 中。<br><a id="more"></a></p>
 <ul>
@@ -127,7 +153,7 @@
     <link href="https://zxc7415239.github.io/2017-04-22-Blog-%E7%AE%A1%E7%90%86/"/>
     <id>https://zxc7415239.github.io/2017-04-22-Blog-管理/</id>
     <published>2017-04-21T17:10:48.000Z</published>
-    <updated>2017-04-24T14:14:12.303Z</updated>
+    <updated>2017-04-25T04:13:16.481Z</updated>
     
     <content type="html"><![CDATA[<p>這邊是介紹如何管理BLOG，並能在不同電腦上寫 Blog。<br><a id="more"></a></p>
 <ul>
@@ -189,7 +215,7 @@
     <link href="https://zxc7415239.github.io/2017-04-21-Hexo-Github-%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8/"/>
     <id>https://zxc7415239.github.io/2017-04-21-Hexo-Github-簡單使用教學/</id>
     <published>2017-04-21T13:03:41.000Z</published>
-    <updated>2017-04-25T00:42:24.448Z</updated>
+    <updated>2017-04-25T04:13:16.491Z</updated>
     
     <content type="html"><![CDATA[<p>這邊主要就紀錄我使用 Hexo 部署到 Github 上的流程。<br><a id="more"></a></p>
 <ul>
