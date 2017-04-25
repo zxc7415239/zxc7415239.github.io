@@ -531,7 +531,7 @@ a.article-date:hover {
 }
 .article-category:before {
   font-family: FontAwesome;
-  content: "\f0c6";
+  content: "\f07c";
 }
 .article-category-link {
   margin: 0 12px 1em;
@@ -719,7 +719,9 @@ a.article-title:hover {
   margin-right: 10px;
 }
 .article-tag-list-link:before {
-  content: "#";
+  font-family: FontAwesome;
+  color: #ccc;
+  content: "\f02b";
 }
 .article-comment-link {
   float: right;

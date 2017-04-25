@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxc7415239.github.io/"/>
-  <updated>2017-04-23T16:56:12.965Z</updated>
+  <updated>2017-04-25T00:38:27.927Z</updated>
   <id>https://zxc7415239.github.io/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>Flush output of Python print</title>
-    <link href="https://zxc7415239.github.io/2017/04/23/Flush-output-of-Python-print/"/>
-    <id>https://zxc7415239.github.io/2017/04/23/Flush-output-of-Python-print/</id>
+    <link href="https://zxc7415239.github.io/2017-04-23-Flush-output-of-Python-print/"/>
+    <id>https://zxc7415239.github.io/2017-04-23-Flush-output-of-Python-print/</id>
     <published>2017-04-23T11:10:40.000Z</published>
-    <updated>2017-04-23T16:56:12.965Z</updated>
+    <updated>2017-04-25T00:38:27.927Z</updated>
     
     <content type="html"><![CDATA[<p>這邊紀錄如何將 print 的值 flush 到 output file 中。<br><a id="more"></a></p>
 <ul>
@@ -32,8 +32,8 @@
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言 #"></a>前言 <a href="#前言" id="前言">#</a></h2><p>這邊主要是提供一個將 print 值 flush 到一個檔案中的方法。</p>
 <h2 id="建置環境"><a href="#建置環境" class="headerlink" title="建置環境 #"></a>建置環境 <a href="#建置環境" id="建置環境">#</a></h2><p>OS: Windows 8.1<br>Python 2.7</p>
 <h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼 #"></a>程式碼 <a href="#程式碼" id="程式碼">#</a></h2><p>現在的結構如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dir</div><div class="line">├── func.py     # function</div><div class="line">├── main.py     # 主程式</div><div class="line">└── output.txt  # 將執行結果輸出到這裡</div></pre></td></tr></table></figure></p>
-<h4 id="func-py"><a href="#func-py" class="headerlink" title="func.py"></a>func.py</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">import sys</div><div class="line">class flushfile(object):</div><div class="line">    def __init__(self, f):</div><div class="line">        self.f = f</div><div class="line">    def __getattr__(self,name):</div><div class="line">        return object.__getattribute__(self.f, name)</div><div class="line">    def write(self, x):</div><div class="line">        self.f.write(x)</div><div class="line">        self.f.flush()</div><div class="line">    def close(self):</div><div class="line">        self.f.close()</div><div class="line">import time</div><div class="line">def sleep():</div><div class="line">    for i in xrange(10):</div><div class="line">        time.sleep(0.5)</div><div class="line">        print &apos;test&apos;,i+1</div></pre></td></tr></table></figure>
-<h4 id="main-py"><a href="#main-py" class="headerlink" title="main.py"></a>main.py</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">import sys</div><div class="line">from func import flushfile, sleep</div><div class="line">#----------------------------#</div><div class="line">orig_stdout = sys.stdout # open</div><div class="line">sys.stdout = open(dir_path + &quot;output.txt&quot;,&quot;w&quot;)</div><div class="line">#----------------------------#</div><div class="line">sys.stdout = flushfile(sys.stdout)</div><div class="line">r = sleep()</div><div class="line">#----------------------------#</div><div class="line">sys.stdout.close() # close</div><div class="line">sys.stdout = orig_stdout</div><div class="line">#----------------------------#</div></pre></td></tr></table></figure>
+<h4 id="func-py"><a href="#func-py" class="headerlink" title="func.py"></a>func.py</h4><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">flushfile</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, f)</span>:</span></div><div class="line">        self.f = f</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span><span class="params">(self,name)</span>:</span></div><div class="line">        <span class="keyword">return</span> object.__getattribute__(self.f, name)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">write</span><span class="params">(self, x)</span>:</span></div><div class="line">        self.f.write(x)</div><div class="line">        self.f.flush()</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close</span><span class="params">(self)</span>:</span></div><div class="line">        self.f.close()</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sleep</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">10</span>):</div><div class="line">        time.sleep(<span class="number">0.5</span>)</div><div class="line">        <span class="keyword">print</span> <span class="string">'test'</span>,i+<span class="number">1</span></div></pre></td></tr></table></figure>
+<h4 id="main-py"><a href="#main-py" class="headerlink" title="main.py"></a>main.py</h4><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">from</span> func <span class="keyword">import</span> flushfile, sleep</div><div class="line"><span class="comment">#----------------------------#</span></div><div class="line">orig_stdout = sys.stdout <span class="comment"># open</span></div><div class="line">sys.stdout = open(dir_path + <span class="string">"output.txt"</span>,<span class="string">"w"</span>)</div><div class="line"><span class="comment">#----------------------------#</span></div><div class="line">sys.stdout = flushfile(sys.stdout)</div><div class="line">r = sleep()</div><div class="line"><span class="comment">#----------------------------#</span></div><div class="line">sys.stdout.close() <span class="comment"># close</span></div><div class="line">sys.stdout = orig_stdout</div><div class="line"><span class="comment">#----------------------------#</span></div></pre></td></tr></table></figure>
 <h4 id="output-txt"><a href="#output-txt" class="headerlink" title="output.txt"></a>output.txt</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">test 1</div><div class="line">test 2</div><div class="line">test 3</div><div class="line">test 4</div><div class="line">test 5</div><div class="line">test 6</div><div class="line">test 7</div><div class="line">test 8</div><div class="line">test 9</div><div class="line">test 10</div></pre></td></tr></table></figure>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference  #"></a>Reference  <a href="#Reference" id="Reference">#</a></h2><p><a href="http://stackoverflow.com/questions/230751/how-to-flush-output-of-python-print/231216#231216" target="_blank" rel="external">How to flush output of Python print?</a><br><a href="http://ephrain.pixnet.net/blog/post/60371176-%5Bpython%5D-__getattr__%28%29-%E8%88%87-__getattribute__%28%29-%E7%9A%84%E5%B7%AE%E5%88%A5" target="_blank" rel="external">[Python] __getattr__() 與 __getattribute__() 的差別</a></p>
 ]]></content>
@@ -53,8 +53,8 @@
   
   <entry>
     <title>Django + Celery in windows</title>
-    <link href="https://zxc7415239.github.io/2017/04/22/Django-Celery-in-windows/"/>
-    <id>https://zxc7415239.github.io/2017/04/22/Django-Celery-in-windows/</id>
+    <link href="https://zxc7415239.github.io/2017-04-22-Django-Celery-in-windows/"/>
+    <id>https://zxc7415239.github.io/2017-04-22-Django-Celery-in-windows/</id>
     <published>2017-04-22T11:05:26.000Z</published>
     <updated>2017-04-23T16:56:45.965Z</updated>
     
@@ -124,8 +124,8 @@
   
   <entry>
     <title>Blog 管理</title>
-    <link href="https://zxc7415239.github.io/2017/04/22/Blog-%E7%AE%A1%E7%90%86/"/>
-    <id>https://zxc7415239.github.io/2017/04/22/Blog-管理/</id>
+    <link href="https://zxc7415239.github.io/2017-04-22-Blog-%E7%AE%A1%E7%90%86/"/>
+    <id>https://zxc7415239.github.io/2017-04-22-Blog-管理/</id>
     <published>2017-04-21T17:10:48.000Z</published>
     <updated>2017-04-24T14:14:12.303Z</updated>
     
@@ -186,10 +186,10 @@
   
   <entry>
     <title>Hexo + Github 簡單使用教學</title>
-    <link href="https://zxc7415239.github.io/2017/04/21/Hexo-Github-%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8/"/>
-    <id>https://zxc7415239.github.io/2017/04/21/Hexo-Github-簡單使用教學/</id>
+    <link href="https://zxc7415239.github.io/2017-04-21-Hexo-Github-%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8/"/>
+    <id>https://zxc7415239.github.io/2017-04-21-Hexo-Github-簡單使用教學/</id>
     <published>2017-04-21T13:03:41.000Z</published>
-    <updated>2017-04-24T04:56:49.731Z</updated>
+    <updated>2017-04-25T00:42:24.448Z</updated>
     
     <content type="html"><![CDATA[<p>這邊主要就紀錄我使用 Hexo 部署到 Github 上的流程。<br><a id="more"></a></p>
 <ul>
@@ -240,7 +240,7 @@
 <h2 id="常用-Hexo-指令"><a href="#常用-Hexo-指令" class="headerlink" title="常用 Hexo 指令 #"></a>常用 Hexo 指令 <a href="#常用指令" id="常用指令">#</a></h2><p>發文<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo new &quot;postName&quot; 		# 產生新的文章</div><div class="line">$ hexo new page &quot;pageName&quot;	# 產生新的頁面</div></pre></td></tr></table></figure></p>
 <p>Hexo提供了常用命令的簡寫<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo n == hexo new   		# 產生新的 post/page/draft</div><div class="line">$ hexo g == hexo generate  	# 產生靜態頁面</div><div class="line">$ hexo s == hexo server		# 啟動本地瀏覽</div><div class="line">$ hexo d == hexo deploy		# 部署文件至 Github 上</div></pre></td></tr></table></figure></p>
 <p>指令組合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo d -g	# 產生靜態文件後，部署 blog</div><div class="line">$ hexo s -g	# 產生靜態文件後，預覽 blog</div></pre></td></tr></table></figure></p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference  #"></a>Reference  <a href="#Reference" id="Reference">#</a></h2><p><a href="https://mousyball.github.io/2017/01/01/Hexo-Github-Build/#an-zhuang-github-desktop" target="_blank" rel="external">Hexo + Github 零基礎建立過程</a><br><a href="http://yurixu.com/categories/Hexo/" target="_blank" rel="external">Hexo搭建个人博客</a><br><a href="http://charsdavy.github.io/2016/06/24/hexo-extern-scroll-top/" target="_blank" rel="external">添加回滚到顶部按钮</a><br><a href="https://git-scm.com/book/zh-tw/v1" target="_blank" rel="external">Git Book</a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference  #"></a>Reference  <a href="#Reference" id="Reference">#</a></h2><p><a href="https://mousyball.github.io/2017/01/01/Hexo-Github-Build/#an-zhuang-github-desktop" target="_blank" rel="external">Hexo + Github 零基礎建立過程</a><br><a href="http://yurixu.com/categories/Hexo/" target="_blank" rel="external">Hexo搭建个人博客</a><br><a href="http://charsdavy.github.io/2016/06/24/hexo-extern-scroll-top/" target="_blank" rel="external">添加回滚到顶部按钮</a><br><a href="https://git-scm.com/book/zh-tw/v1" target="_blank" rel="external">Git Book</a><br><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">Next theme</a></p>
 ]]></content>
     
     <summary type="html">
