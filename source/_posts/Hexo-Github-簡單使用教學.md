@@ -187,3 +187,4 @@ $ hexo s -g	# 產生靜態文件後，預覽 blog
 [Hexo搭建个人博客](http://yurixu.com/categories/Hexo/)
 [添加回滚到顶部按钮](http://charsdavy.github.io/2016/06/24/hexo-extern-scroll-top/)
 [Git Book](https://git-scm.com/book/zh-tw/v1)
+[Next theme](http://theme-next.iissnan.com/)

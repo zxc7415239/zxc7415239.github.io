@@ -7,14 +7,14 @@ title: Shan's Blog
 subtitle: 這是我的學習筆記
 description: 這是我的學習筆記
 author: Shan
-language: zh-TW
+language: zh-tw
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://zxc7415239.github.io/
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :year-:month-:day-:title/
 permalink_defaults:
 
 # Directory
@@ -64,6 +64,7 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: landscape
+#theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

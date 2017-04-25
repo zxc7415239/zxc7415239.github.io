@@ -28,7 +28,7 @@ dir
 └── output.txt  # 將執行結果輸出到這裡
 ```
 #### func.py
-```
+```py
 import sys
 class flushfile(object):
     def __init__(self, f):
@@ -47,7 +47,7 @@ def sleep():
         print 'test',i+1
 ```
 #### main.py
-```
+```py
 import sys
 from func import flushfile, sleep
 #----------------------------#
