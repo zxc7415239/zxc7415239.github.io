@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zxc7415239.github.io/2017-04-22-Django-Celery-in-windows/</loc>
+    
+    <lastmod>2017-04-26T16:24:23.482Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zxc7415239.github.io/2017-04-25-Python%E6%8A%93%E8%B7%AF%E5%BE%91%E7%94%A8%E6%B3%95/</loc>
+    
+    <lastmod>2017-04-25T10:22:22.554Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zxc7415239.github.io/2017-04-21-Hexo-Github-%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8/</loc>
     
     <lastmod>2017-04-25T00:42:24.448Z</lastmod>
@@ -19,13 +33,6 @@
     <loc>https://zxc7415239.github.io/2017-04-22-Blog-%E7%AE%A1%E7%90%86/</loc>
     
     <lastmod>2017-04-24T14:14:12.303Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zxc7415239.github.io/2017-04-22-Django-Celery-in-windows/</loc>
-    
-    <lastmod>2017-04-23T16:56:45.965Z</lastmod>
     
   </url>
   
