@@ -31,7 +31,7 @@ OS: Windows 8.1
 ## 建立流程 <a href="#建立流程" id="建立流程">#</a>
 #### 安裝 Celery <a href="#安裝Celery" id="安裝Celery">#</a>
 先安裝 Celery 3.1.25
-```
+```bash
 pip install celery==3.1.25
 ```
 #### 安裝 ERLANG/OTP <a href="#安裝ERLANG" id="安裝ERLANG">#</a>
@@ -64,7 +64,7 @@ proj
 
 ```
 #### celery.py
-```
+```py
 from __future__ import absolute_import
 import os
 from celery import Celery
@@ -99,7 +99,7 @@ proj
     └── celery.py
 ```
 #### \__int\__.py
-```
+```py
 from __future__ import absolute_import
 
 # This will make sure the app is always imported when
@@ -110,15 +110,15 @@ from .celery import app as celery_app  # noqa
 Note that this example project layout is suitable for larger projects, for simple projects you may use a single contained module that defines both the app and tasks, like in the [First Steps with Celery](http://docs.celeryproject.org/en/3.1/getting-started/first-steps-with-celery.html#tut-celery) tutorial.
 
 Let's break down what happens in the first module, first we import absolute imports from the future, so that our celery.py module will not clash with the library:
-```
+```py
 from __future__ import absolute_import
 ```
 Then we set the default ``DJANGO_SETTINGS_MODULE`` for the ``celery`` command-line program:
-```
+```py
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'proj.settings')
 ```
 Specifying the settings here means the celery command line program will know where your Django project is. This statement must always appear before the app instance is created, which is what we do next:
-```
+```py
 app = Celery('proj')
 ```
 This is your instance of the library, you can have many instances but there’s probably no reason for that when using Django.
@@ -126,11 +126,11 @@ This is your instance of the library, you can have many instances but there’s 
 We also add the Django settings module as a configuration source for Celery. This means that you don’t have to use multiple configuration files, and instead configure Celery directly from the Django settings.
 
 You can pass the object directly here, but using a string is better since then the worker doesn’t have to serialize the object when using Windows or execv:
-````
+````py
 app.config_from_object('django.conf:settings')
 ````
 Next, a common practice for reusable apps is to define all tasks in a separate tasks.py module, and Celery does have a way to autodiscover these modules:
-````
+````py
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 ````
 <hr>
@@ -148,7 +148,7 @@ proj
     └── celery.py
 ```
 #### settings.py
-```
+```py
 # Celery settings
 # 如果rabbitmq運行在默認設置下，CELERY不需要其他信息，只要amqp://即可。
 # BROKER_URL = 'amqp://guest:guest@localhost:5672//'
@@ -176,7 +176,7 @@ proj
 └── proj
 ```
 #### tasks.py
-```
+```py
 from __future__ import absolute_import
 
 from celery import shared_task
@@ -195,24 +195,33 @@ def xsum(numbers):
 ```
 #### 啟動 worker  <a href="#啟動" id="啟動">#</a>
 在平時使用 ``python manage.py runserver`` 的目錄下輸入指令即可啟動 celery worker
-```
+```bash
 celery -A pqrl worker -l info
 ```
 <img src="https://raw.githubusercontent.com/zxc7415239/MarkdownPhotos/master/photos/run_celery.png" alt="啟動成功畫面" width="50%" height="50%" />
 #### 測試 <a href="#測試" id="測試">#</a>
 接下來測試是否能運行。再開啟一個 cmd。
-```
+```bash
 python manage.py shell
 ```
 進入 shell 後，輸入命令。
-```
+```py
 from myapp.tasks import add
 add(5,5)
 >> 10
 results = add.delay(5,5)   # 加了.delay 後會發現 worker 開始運作
 results.get()
->> 10
+>> 10                      # 成功運行。
+my_task_id = results.id    # 當前 task id
 ```
-成功運行。
+獲得 celery tasks 的執行狀態。
+```py
+from celery.result import AsyncResult
+from myapp.tasks import add
+task_status = worker.AsyncResult(my_task_id).state
+```
+``task_status``
+運行中: ``PENDING``
+運行結束: ``SUCCESS``
 ## Reference  <a href="#Reference" id="Reference">#</a>
 [First steps with Django](http://docs.celeryproject.org/en/3.1/django/first-steps-with-django.html#using-celery-with-django)
