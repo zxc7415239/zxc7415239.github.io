@@ -4,17 +4,19 @@
   <meta charset="utf-8">
   <meta name="google-site-verification" content="zM6scSgnl88TihCqkDuasOzGwJNYCTHsXal1g1U2acM" />
   
-  <title>Tag: Hexo | Shan&#39;s Blog</title>
+  <title>Python 讀寫 JSON | Shan&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="這是我的學習筆記">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Shan's Blog">
-<meta property="og:url" content="https://zxc7415239.github.io/tags/Hexo/index.html">
+  <meta name="description" content="讀寫 JSON。">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 讀寫 JSON">
+<meta property="og:url" content="https://zxc7415239.github.io/2017-04-30-Python-讀寫-JSON/index.html">
 <meta property="og:site_name" content="Shan's Blog">
-<meta property="og:description" content="這是我的學習筆記">
+<meta property="og:description" content="讀寫 JSON。">
+<meta property="og:updated_time" content="2017-04-30T09:01:50.593Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shan's Blog">
-<meta name="twitter:description" content="這是我的學習筆記">
+<meta name="twitter:title" content="Python 讀寫 JSON">
+<meta name="twitter:description" content="讀寫 JSON。">
   
     <link rel="alternate" href="/atom.xml" title="Shan&#39;s Blog" type="application/atom+xml">
   
@@ -69,58 +71,62 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
+        <section id="main"><article id="post-Python-讀寫-JSON" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
     
     
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017-04-22-Blog-管理/" class="archive-article-date">
-  <time datetime="2017-04-21T17:10:48.000Z" itemprop="datePublished">4月 22</time>
-</a>
-      
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017-04-22-Blog-管理/">Blog 管理</a>
+    <h1 class="article-title" itemprop="name">
+      Python 讀寫 JSON
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017-04-21-Hexo-Github-簡單使用教學/" class="archive-article-date">
-  <time datetime="2017-04-21T13:03:41.000Z" itemprop="datePublished">4月 21</time>
+    <!-- 將時間放在文章下 -->
+    <div class="article-meta">
+      <a href="/2017-04-30-Python-讀寫-JSON/" class="article-date">
+  <time datetime="2017-04-30T08:58:22.000Z" itemprop="datePublished">2017-04-30</time>
 </a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017-04-21-Hexo-Github-簡單使用教學/">Hexo + Github 簡單使用教學</a>
-    </h1>
-  
-
-    </header>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
   </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>讀寫 JSON。<br><a id="more"></a></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line">data = &#123;<span class="string">'key'</span>: value&#125;</div><div class="line"><span class="comment"># Writing JSON data</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'data.json'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</div><div class="line">    json.dump(data, f)</div><div class="line"></div><div class="line"><span class="comment"># Reading data back</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'data.json'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</div><div class="line">    data = json.load(f)</div></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference  #"></a>Reference  <a href="#Reference" id="Reference">#</a></h2><p><a href="http://python3-cookbook.readthedocs.io/zh_CN/latest/c06/p02_read-write_json_data.html" target="_blank" rel="external">读写JSON数据</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zxc7415239.github.io/2017-04-30-Python-讀寫-JSON/" data-id="cj24gt9o70004n4c29rgmi9xs" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017-04-25-Python抓路徑用法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python抓路徑用法</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         

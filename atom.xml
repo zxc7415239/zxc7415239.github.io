@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxc7415239.github.io/"/>
-  <updated>2017-04-25T10:22:22.554Z</updated>
+  <updated>2017-04-30T09:01:50.593Z</updated>
   <id>https://zxc7415239.github.io/</id>
   
   <author>
@@ -14,6 +14,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python 讀寫 JSON</title>
+    <link href="https://zxc7415239.github.io/2017-04-30-Python-%E8%AE%80%E5%AF%AB-JSON/"/>
+    <id>https://zxc7415239.github.io/2017-04-30-Python-讀寫-JSON/</id>
+    <published>2017-04-30T08:58:22.000Z</published>
+    <updated>2017-04-30T09:01:50.593Z</updated>
+    
+    <content type="html"><![CDATA[<p>讀寫 JSON。<br><a id="more"></a></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line">data = &#123;<span class="string">'key'</span>: value&#125;</div><div class="line"><span class="comment"># Writing JSON data</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'data.json'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</div><div class="line">    json.dump(data, f)</div><div class="line"></div><div class="line"><span class="comment"># Reading data back</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'data.json'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</div><div class="line">    data = json.load(f)</div></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference  #"></a>Reference  <a href="#Reference" id="Reference">#</a></h2><p><a href="http://python3-cookbook.readthedocs.io/zh_CN/latest/c06/p02_read-write_json_data.html" target="_blank" rel="external">读写JSON数据</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;讀寫 JSON。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="https://zxc7415239.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://zxc7415239.github.io/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>Python抓路徑用法</title>
