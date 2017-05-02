@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxc7415239.github.io/"/>
-  <updated>2017-04-30T09:01:50.593Z</updated>
+  <updated>2017-05-02T08:52:42.778Z</updated>
   <id>https://zxc7415239.github.io/</id>
   
   <author>
@@ -14,6 +14,90 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python pandas 用法</title>
+    <link href="https://zxc7415239.github.io/2017-05-02-Python-pandas-%E7%94%A8%E6%B3%95/"/>
+    <id>https://zxc7415239.github.io/2017-05-02-Python-pandas-用法/</id>
+    <published>2017-05-02T08:08:01.000Z</published>
+    <updated>2017-05-02T08:52:42.778Z</updated>
+    
+    <content type="html"><![CDATA[<p>這邊紀錄 pandas 常用指令。<br><a id="more"></a></p>
+<h5 id="讀檔案"><a href="#讀檔案" class="headerlink" title="讀檔案"></a>讀檔案</h5><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line">path = <span class="string">'/file'</span></div><div class="line">df_excel = pd.read_excel(path + <span class="string">'/file.xlsx'</span>) <span class="comment"># .xls 也可</span></div><div class="line">df_csv = pd.read_csv(path + <span class="string">'/file.csv'</span>)</div></pre></td></tr></table></figure>
+<h5 id="二維-Keys-的-dictionary-轉換成-Dataframe"><a href="#二維-Keys-的-dictionary-轉換成-Dataframe" class="headerlink" title="二維 Keys 的 dictionary 轉換成 Dataframe"></a>二維 Keys 的 dictionary 轉換成 Dataframe</h5><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mydict = &#123;</div><div class="line">    (<span class="string">'1st'</span>,<span class="number">1</span>): <span class="number">11</span>,</div><div class="line">    (<span class="string">'1st'</span>,<span class="number">2</span>): <span class="number">12</span>,</div><div class="line">    (<span class="string">'1st'</span>,<span class="number">3</span>): <span class="number">13</span>,</div><div class="line">    (<span class="string">'2nd'</span>,<span class="number">1</span>): <span class="number">21</span>,</div><div class="line">    (<span class="string">'2nd'</span>,<span class="number">2</span>): <span class="number">22</span>,</div><div class="line">    (<span class="string">'2nd'</span>,<span class="number">3</span>): <span class="number">23</span>,</div><div class="line">    (<span class="string">'3rd'</span>,<span class="number">1</span>): <span class="number">31</span>,</div><div class="line">    (<span class="string">'3rd'</span>,<span class="number">2</span>): <span class="number">32</span>,</div><div class="line">    (<span class="string">'3rd'</span>,<span class="number">3</span>): <span class="number">33</span>,</div><div class="line">&#125;</div><div class="line">data = map(list, zip(*mydict.keys())) + [mydict.values()]</div><div class="line">df = pd.DataFrame(zip(*data)).set_index([<span class="number">0</span>, <span class="number">1</span>])[<span class="number">2</span>].unstack()</div><div class="line">df.fillna(<span class="number">0</span>, inplace=<span class="keyword">True</span>) <span class="comment"># missing data convert to zero</span></div></pre></td></tr></table></figure>
+<h5 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h5><table>
+<thead>
+<tr>
+<th style="text-align:center">Index</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1st</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">13</td>
+</tr>
+<tr>
+<td style="text-align:center">2nd</td>
+<td style="text-align:center">21</td>
+<td style="text-align:center">22</td>
+<td style="text-align:center">33</td>
+</tr>
+<tr>
+<td style="text-align:center">3rd</td>
+<td style="text-align:center">31</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">33</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Dataframe-columns-和-Index"><a href="#Dataframe-columns-和-Index" class="headerlink" title="Dataframe columns 和 Index"></a>Dataframe columns 和 Index</h5><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df.columns</div><div class="line">df.index</div></pre></td></tr></table></figure>
+<h5 id="Dataframe-轉換-type"><a href="#Dataframe-轉換-type" class="headerlink" title="Dataframe 轉換 type"></a>Dataframe 轉換 type</h5><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.astype(int)</div></pre></td></tr></table></figure>
+<h5 id="自訂義-Index"><a href="#自訂義-Index" class="headerlink" title="自訂義 Index"></a>自訂義 Index</h5><p>有兩個參數能用<br><code>inplace</code> : 預設 <code>False</code> ，如果 <code>True</code> 就不會產生新的 Dataframe，會直接修改原先的 Dataframe。<br><code>drop</code>    : 預設 <code>True</code> ，如果 <code>False</code> 就不會將 Dataframe 中該列移除掉。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 將上面的 df 拿來用</span></div><div class="line">df = df.set_index(<span class="number">1</span>, inplace=<span class="keyword">False</span>, drop=<span class="keyword">True</span>)</div></pre></td></tr></table></figure></p>
+<h5 id="結果-1"><a href="#結果-1" class="headerlink" title="結果"></a>結果</h5><table>
+<thead>
+<tr>
+<th style="text-align:center">Index</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">13</td>
+</tr>
+<tr>
+<td style="text-align:center">21</td>
+<td style="text-align:center">22</td>
+<td style="text-align:center">33</td>
+</tr>
+<tr>
+<td style="text-align:center">31</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">33</td>
+</tr>
+</tbody>
+</table>
+<h5 id="輸出-Excel"><a href="#輸出-Excel" class="headerlink" title="輸出 Excel"></a>輸出 Excel</h5><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df.to_excel(path + <span class="string">'/file.xlsx'</span>, index=<span class="keyword">False</span>)</div><div class="line"><span class="comment"># index 預設 True 會輸出 Index 那列</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;這邊紀錄 pandas 常用指令。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="https://zxc7415239.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://zxc7415239.github.io/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>Python 讀寫 JSON</title>
