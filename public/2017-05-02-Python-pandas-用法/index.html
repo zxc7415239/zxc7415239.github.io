@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="zM6scSgnl88TihCqkDuasOzGwJNYCTHsXal1g1U2acM" />
+  
+  <title>Python pandas 用法 | Shan&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="這邊紀錄 pandas 常用指令。">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python pandas 用法">
+<meta property="og:url" content="https://zxc7415239.github.io/2017-05-02-Python-pandas-用法/index.html">
+<meta property="og:site_name" content="Shan's Blog">
+<meta property="og:description" content="這邊紀錄 pandas 常用指令。">
+<meta property="og:updated_time" content="2017-05-02T08:52:42.778Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python pandas 用法">
+<meta name="twitter:description" content="這邊紀錄 pandas 常用指令。">
+  
+    <link rel="alternate" href="/atom.xml" title="Shan&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Shan&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">這是我的學習筆記</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="https://github.com/zxc7415239">GitHub</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zxc7415239.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python-pandas-用法" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python pandas 用法
+    </h1>
+  
+
+      </header>
+    
+    <!-- 將時間放在文章下 -->
+    <div class="article-meta">
+      <a href="/2017-05-02-Python-pandas-用法/" class="article-date">
+  <time datetime="2017-05-02T08:08:01.000Z" itemprop="datePublished">2017-05-02</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>這邊紀錄 pandas 常用指令。<br><a id="more"></a></p>
+<h5 id="讀檔案"><a href="#讀檔案" class="headerlink" title="讀檔案"></a>讀檔案</h5><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line">path = <span class="string">'/file'</span></div><div class="line">df_excel = pd.read_excel(path + <span class="string">'/file.xlsx'</span>) <span class="comment"># .xls 也可</span></div><div class="line">df_csv = pd.read_csv(path + <span class="string">'/file.csv'</span>)</div></pre></td></tr></table></figure>
+<h5 id="二維-Keys-的-dictionary-轉換成-Dataframe"><a href="#二維-Keys-的-dictionary-轉換成-Dataframe" class="headerlink" title="二維 Keys 的 dictionary 轉換成 Dataframe"></a>二維 Keys 的 dictionary 轉換成 Dataframe</h5><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mydict = &#123;</div><div class="line">    (<span class="string">'1st'</span>,<span class="number">1</span>): <span class="number">11</span>,</div><div class="line">    (<span class="string">'1st'</span>,<span class="number">2</span>): <span class="number">12</span>,</div><div class="line">    (<span class="string">'1st'</span>,<span class="number">3</span>): <span class="number">13</span>,</div><div class="line">    (<span class="string">'2nd'</span>,<span class="number">1</span>): <span class="number">21</span>,</div><div class="line">    (<span class="string">'2nd'</span>,<span class="number">2</span>): <span class="number">22</span>,</div><div class="line">    (<span class="string">'2nd'</span>,<span class="number">3</span>): <span class="number">23</span>,</div><div class="line">    (<span class="string">'3rd'</span>,<span class="number">1</span>): <span class="number">31</span>,</div><div class="line">    (<span class="string">'3rd'</span>,<span class="number">2</span>): <span class="number">32</span>,</div><div class="line">    (<span class="string">'3rd'</span>,<span class="number">3</span>): <span class="number">33</span>,</div><div class="line">&#125;</div><div class="line">data = map(list, zip(*mydict.keys())) + [mydict.values()]</div><div class="line">df = pd.DataFrame(zip(*data)).set_index([<span class="number">0</span>, <span class="number">1</span>])[<span class="number">2</span>].unstack()</div><div class="line">df.fillna(<span class="number">0</span>, inplace=<span class="keyword">True</span>) <span class="comment"># missing data convert to zero</span></div></pre></td></tr></table></figure>
+<h5 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h5><table>
+<thead>
+<tr>
+<th style="text-align:center">Index</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1st</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">13</td>
+</tr>
+<tr>
+<td style="text-align:center">2nd</td>
+<td style="text-align:center">21</td>
+<td style="text-align:center">22</td>
+<td style="text-align:center">33</td>
+</tr>
+<tr>
+<td style="text-align:center">3rd</td>
+<td style="text-align:center">31</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">33</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Dataframe-columns-和-Index"><a href="#Dataframe-columns-和-Index" class="headerlink" title="Dataframe columns 和 Index"></a>Dataframe columns 和 Index</h5><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df.columns</div><div class="line">df.index</div></pre></td></tr></table></figure>
+<h5 id="Dataframe-轉換-type"><a href="#Dataframe-轉換-type" class="headerlink" title="Dataframe 轉換 type"></a>Dataframe 轉換 type</h5><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.astype(int)</div></pre></td></tr></table></figure>
+<h5 id="自訂義-Index"><a href="#自訂義-Index" class="headerlink" title="自訂義 Index"></a>自訂義 Index</h5><p>有兩個參數能用<br><code>inplace</code> : 預設 <code>False</code> ，如果 <code>True</code> 就不會產生新的 Dataframe，會直接修改原先的 Dataframe。<br><code>drop</code>    : 預設 <code>True</code> ，如果 <code>False</code> 就不會將 Dataframe 中該列移除掉。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 將上面的 df 拿來用</span></div><div class="line">df = df.set_index(<span class="number">1</span>, inplace=<span class="keyword">False</span>, drop=<span class="keyword">True</span>)</div></pre></td></tr></table></figure></p>
+<h5 id="結果-1"><a href="#結果-1" class="headerlink" title="結果"></a>結果</h5><table>
+<thead>
+<tr>
+<th style="text-align:center">Index</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">13</td>
+</tr>
+<tr>
+<td style="text-align:center">21</td>
+<td style="text-align:center">22</td>
+<td style="text-align:center">33</td>
+</tr>
+<tr>
+<td style="text-align:center">31</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">33</td>
+</tr>
+</tbody>
+</table>
+<h5 id="輸出-Excel"><a href="#輸出-Excel" class="headerlink" title="輸出 Excel"></a>輸出 Excel</h5><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df.to_excel(path + <span class="string">'/file.xlsx'</span>, index=<span class="keyword">False</span>)</div><div class="line"><span class="comment"># index 預設 True 會輸出 Index 那列</span></div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zxc7415239.github.io/2017-05-02-Python-pandas-用法/" data-id="cj279uixt0001cwc2dwunovzv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017-04-30-Python-讀寫-JSON/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python 讀寫 JSON</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+    <aside id="sidebar" class="outer">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Celery/">Celery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017-05-02-Python-pandas-用法/">Python pandas 用法</a>
+          </li>
+        
+          <li>
+            <a href="/2017-04-30-Python-讀寫-JSON/">Python 讀寫 JSON</a>
+          </li>
+        
+          <li>
+            <a href="/2017-04-25-Python抓路徑用法/">Python抓路徑用法</a>
+          </li>
+        
+          <li>
+            <a href="/2017-04-23-Flush-output-of-Python-print/">Flush output of Python print</a>
+          </li>
+        
+          <li>
+            <a href="/2017-04-22-Django-Celery-in-windows/">Django + Celery in windows</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Shan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+<!-- back_to_top bottom -->
+<div id="totop" style="position:fixed;bottom:50px;right:50px;cursor: pointer;">
+<a title="back_to_top"><img src="/css/images/back_to_top.png"/></a>
+</div>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/zxc7415239" class="mobile-nav-link">GitHub</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<!-- back_to_top js -->
+<script src="/js/totop.js"></script>
+  </div>
+</body>
+</html>
