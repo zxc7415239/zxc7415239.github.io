@@ -13,6 +13,9 @@ import os
 print os.path.dirname(os.path.abspath(sys.argv[0])).replace('\\','/')
 print os.path.abspath(os.path.dirname(sys.argv[0])).replace('\\','/')
 print os.getcwd()
+import inspect
+print inspect.getfile(inspect.currentframe()) # script filename (usually with path)
+print os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))) # script directory
 ```
 #### 前一級目錄
 ```py
